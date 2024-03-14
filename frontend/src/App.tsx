@@ -26,28 +26,6 @@ const router = createBrowserRouter([
 	},
 ]);
 
-
-const router = createBrowserRouter([ 
-	{
-		path: '/',
-		element: <>
-					<NavBar/>
-					<SideNav/>
-				</>,
-		errorElement: <div>Brat 404 situaciq</div>,
-	},
-	{
-		path: '/Login',
-		element: <Login/>,
-		errorElement: <div>Brat 404 situaciq</div>,
-	},
-	{
-		path: '/Sign-Up',
-		element: <SignUp/>,
-		errorElement: <div>Brat 404 situaciq</div>,
-	},
-]);
-
 function App() {
   return (<>
 			<RouterProvider router={router} />
