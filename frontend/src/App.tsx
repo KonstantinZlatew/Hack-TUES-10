@@ -1,4 +1,3 @@
-import './App.css'
 import Login from './components/Login'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import SignUp from './components/SignUp'
@@ -12,6 +11,11 @@ const router = createBrowserRouter([
 					<NavBar/>
 					<SideNav/>
 				</>,
+		errorElement: <div>Brat 404 situaciq</div>,
+	},
+	{
+		path: '/Login',
+		element: <Login/>,
 		errorElement: <div>Brat 404 situaciq</div>,
 	},
 	{
