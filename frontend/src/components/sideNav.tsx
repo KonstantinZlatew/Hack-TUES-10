@@ -44,8 +44,7 @@ function SideNav() {
           {Menus.map((Menu, index) => (
             <li
               key={index}
-              className={`flex rounded-md p-2 cursor-pointer duration-300 text-white hover:text-emerald-950 text-base items-center gap-x-4
-              hover:bg-purple-200
+              className={`flex rounded-md p-2 cursor-pointer text-white text-base hover:text-xl items-center gap-x-4
              ${
                 index === 0 && "bg-light-white"
               } `}
