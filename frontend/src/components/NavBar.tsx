@@ -12,13 +12,13 @@ const Navbar = () => {
     ];
   
     return (
-      <div className='bg-black flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-80'>
-        <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT</h1>
+      <div className='bg-emerald-200 flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-80 border-emerald-950 border-b-[3px]'>
+        <h1 className='w-full text-3xl font-bold text-emerald-950'>REACT</h1>
         <ul className='hidden md:flex'>
           {navItems.map(item => (
             <li
               key={item.id}
-              className='p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black'
+              className='p-4 text-emerald-950 hover:bg-emerald-950 rounded-xl m-2 cursor-pointer duration-300 hover:text-purple-200 '
             >
               {item.text}
             </li>
