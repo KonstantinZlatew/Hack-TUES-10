@@ -13,12 +13,12 @@ const Navbar = () => {
   
     return (
       <div className='bg-gradient-to-r from-emerald-800 to-pink-300 flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-12'>
-        <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT</h1>
+        <h1 className='w-full text-3xl font-bold text-white'>Botanical Buddy</h1>
         <div className="mt-4 md:w-1/2 mr-24">
             <div className="relative mb-4 flex w-full flex-wrap items-stretch">
                 <input
                     type="search"
-                    className="rounded-full w-screen relative m-0 -mr-0.5 block min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                    className="rounded-full w-1/2 relative m-0 -mr-0.5 block min-w-0 flex-auto border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-300 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="button-addon1" />
@@ -28,7 +28,7 @@ const Navbar = () => {
           {navItems.map(item => (
             <li
               key={item.id}
-              className='p-4 text-white hover:bg-emerald-950 rounded-xl m-2 cursor-pointer duration-300 hover:text-purple-200 '
+              className='p-4 text-white hover:bg-emerald-800 rounded-xl m-2 cursor-pointer duration-300 '
             >
               {item.text}
             </li>

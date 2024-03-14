@@ -64,9 +64,33 @@ app.post( "/plants", async (req, res) => {
     try {
         const db = new dbService();
         result = await db.addPlantsToDb();
-        console.log(result);
+        //console.log(result);
 
         //plants.then(data => res.json({ data: data }));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+//delete all plants from db
+app.delete("/delete_plants", async (req, res) => {
+    try {
+        const db = new dbService();
+        result = await db.deleteAllPlants();
+        //console.log(result);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}); 
+//get 30 random plants from db
+app.post("/get_random_plants", async (req, res) => {
+    try {
+        const db = new dbService();
+        res = await db.getRandomPlants();
+        //console.log(result);
+
+        res.then(data => res.json({ data: data }));
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
