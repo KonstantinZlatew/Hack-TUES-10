@@ -18,14 +18,15 @@ model User {
   email        String  @unique
   username     String?
   password     String
-  owned_plants Json[]
+  owned_plants Plant[]
 }
 
-//model Plant {
-//   id          String   @id @default(uuid())
-//   name        String
-//   description String
-//   ownerId     String
-//   createdAt   DateTime @default(now())
-//   userId      String?
-//   User        User?    @relation(fields: [userId], references: [id])
+model Plant {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  ownerId     String
+  createdAt   DateTime @default(now())
+  userId      String?
+  User        User?    @relation(fields: [userId], references: [id])
+}
