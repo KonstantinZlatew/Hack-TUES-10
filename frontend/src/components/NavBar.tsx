@@ -12,8 +12,8 @@ const Navbar = () => {
     ];
   
     return (
-      <div className='bg-black flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-64'>
-        <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT</h1>
+      <div className='bg-gradient-to-r from-emerald-800 to-pink-300 flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-64'>
+        <h1 className='w-full text-3xl font-bold text-white'>REACT</h1>
         <div className="mt-4 md:w-1/2 mr-24">
             <div className="relative mb-4 flex w-full flex-wrap items-stretch">
                 <input
@@ -28,7 +28,7 @@ const Navbar = () => {
           {navItems.map(item => (
             <li
               key={item.id}
-              className='p-4 text-emerald-950 hover:bg-emerald-950 rounded-xl m-2 cursor-pointer duration-300 hover:text-purple-200 '
+              className='p-4 text-white hover:bg-emerald-950 rounded-xl m-2 cursor-pointer duration-300 hover:text-purple-200 '
             >
               {item.text}
             </li>
