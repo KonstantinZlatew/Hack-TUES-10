@@ -99,7 +99,7 @@ class dbService {
       take: 30, 
       skip: randomSkip,
   });
-
+  console.log(plants);
   return plants;
   }
 

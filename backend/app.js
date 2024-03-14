@@ -84,7 +84,7 @@ app.delete("/delete_plants", async (req, res) => {
     }
 }); 
 //get 30 random plants from db
-app.post("/get_random_plants", async (req, res) => {
+app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
         res = await db.getRandomPlants();
