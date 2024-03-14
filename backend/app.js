@@ -6,6 +6,8 @@ const cors = require("cors");
 dotenv.config();
 app.use(cors());
 app.use(express.json());
+const port = 5000;
+
 
 //create a new user
 app.post("/user", async (req, res) => {
@@ -68,4 +70,13 @@ app.post( "/plants", async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+process.on('SIGINT', () => {
+    // Perform cleanup tasks (e.g., close database connections, release resources)
+    console.log('Received SIGINT signal. Shutting down gracefully...');
+    process.exit(0);
 });
