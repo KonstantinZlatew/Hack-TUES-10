@@ -8,8 +8,8 @@ class dbService {
       data: {
         email: data.email,
         password: data.password,
-        name: data.name,
-        owned_plants: []
+        username: data.username,
+        plants: {}
       },
     });
   }
@@ -53,21 +53,23 @@ class dbService {
   }
   async addPlantsToDb() {
     const apiKey = require('./API_token')
-    const apiUrl = `https://trefle.io/api/v1/plants?&token=${apiKey}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?page_size=10&token=${apiKey}`;
     try {
       const response = await axios.get(apiUrl);
       const plants = response.data.data; // Extract plant data from the response
-      for (let i = 0; i < plants.length; i++) {
+      for (let i = 0; i < 5; i++) {
+        console.log(prisma, prisma.plant);
         await prisma.plant.create({
           data: {
-            id: plants[i].id,
-            common_name: plants[i].common_name,
+            //id: plants[i].id.toString(),
+            name: plants[i].common_name, // Use the common_name property as the name
             scientific_name: plants[i].scientific_name,
             image_url: plants[i].image_url,
             family: plants[i].family,
             genus: plants[i].genus,
             year: plants[i].year,
             bibliography: plants[i].bibliography,
+            description: plants[i].description,
           }
         });
       }
