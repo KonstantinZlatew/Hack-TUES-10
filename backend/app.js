@@ -87,10 +87,10 @@ app.delete("/delete_plants", async (req, res) => {
 app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
-        res = await db.getRandomPlants();
+        plants = await db.getPlants();
         //console.log(result);
 
-        res.then(data => res.json({ data: data }));
+        res.json({ plants });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
