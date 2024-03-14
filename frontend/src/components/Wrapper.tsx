@@ -2,7 +2,7 @@ import NavBar from './NavBar'
 
 const Wrapper = ({children}: {children: React.ReactNode}) => {
     return (
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-wrap w-full'>
             <NavBar/>
             {children}
         </div>

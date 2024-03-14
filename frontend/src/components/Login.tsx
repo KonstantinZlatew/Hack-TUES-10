@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -82,11 +83,14 @@ function Login() {
                   </button>
                 </div>
               </form>
-            <div className="mt-6">
-                <a href="/Sign-Up" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Sign up
-                </a>
-            </div>
+              <div className="mt-6">
+                  <Link
+                      to="/Sign-Up"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                      Sign up
+                  </Link>
+              </div>
             </div>
           </div>
         </div>
