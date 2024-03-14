@@ -57,3 +57,15 @@ app.get("/user/:userId/plants", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+//adds plants to our db plants model
+app.post( "/plants", async (req, res) => {
+    try {
+        const db = new dbService();
+        result = await db.addPlantsToDb();
+        console.log(result);
+
+        //plants.then(data => res.json({ data: data }));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
