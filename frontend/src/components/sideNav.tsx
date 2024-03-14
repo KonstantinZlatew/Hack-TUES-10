@@ -16,16 +16,14 @@ function SideNav() {
     return (
         <div className="static absolute bottom-0 left-0">
       <div
-        className={` ${
-          open ? "w-72" : "w-24 "
-        } bg-emerald-950 h-screen p-5 pt-8 relative duration-300`}
+        className={`w-64 bg-emerald-950 h-screen p-5 pt-8 relative duration-300`}
       >
-        <h1 className={`text-purple-800 absolute cursor-pointer -right-3 start-60 top-8 w-7 bg-green-100
+        {/* <h1 className={`text-purple-800 absolute cursor-pointer -right-3 start-60 top-8 w-7 bg-green-100
            border-2 border-green-100 rounded-full  ${!open && "rotate-180 start-14" }`}
           onClick={() => setOpen(!open)}>
             ⬅
 
-        </h1>
+        </h1> */}
         {/* <img
           src="./src/assets/control.png"
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
@@ -51,13 +49,13 @@ function SideNav() {
           {Menus.map((Menu, index) => (
             <li
               key={index}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-purple-200 text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"} ${
                 index === 0 && "bg-light-white"
               } `}
             >
               <img src={`./src/assets/${Menu.src}.png`} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
+              <span className={`${!open && "hidden"} origin-left duration-300`}>
                 {Menu.title}
               </span>
             </li>
