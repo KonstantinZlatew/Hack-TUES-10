@@ -14,7 +14,7 @@ function SideNav() {
   ];
 
     return (
-        <div className="static absolute bottom-0 left-0">
+        // <div className="static absolute bottom-0 left-0">
       <div
         className={`w-52 bg-emerald-950 h-screen p-5 pt-8 relative duration-300 border-r-[3px] border-purple-200`}
       >
@@ -57,7 +57,6 @@ function SideNav() {
           ))}
         </ul>
       </div>
-    </div>
     )
 }
 

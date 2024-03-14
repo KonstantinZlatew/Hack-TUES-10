@@ -12,7 +12,7 @@ const Navbar = () => {
     ];
   
     return (
-      <div className='bg-black flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-64'>
+      <div className='bg-black flex justify-between items-center h-24 mx-auto px-4 text-white w-full pl-12'>
         <h1 className='w-full text-3xl font-bold text-[#00df9a]'>REACT</h1>
         <div className="mt-4 md:w-1/2 mr-24">
             <div className="relative mb-4 flex w-full flex-wrap items-stretch">
