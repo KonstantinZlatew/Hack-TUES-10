@@ -6,7 +6,7 @@ interface PlantCardProps {
 function Card({title, imageUrl}: PlantCardProps){
   return (
       <div
-        className="ml-12 w-72 h-96 mt-12 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-white">
+        className="ml-12 w-72 h-96 mt-12 block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-white">
         <a href="#!">
           <img
             className="rounded-t-lg"
