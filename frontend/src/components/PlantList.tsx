@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function PlantList() {
     const [plants, setPlants] = useState(null);
@@ -13,7 +13,7 @@ function PlantList() {
             });
     }, []);
 
-    return <div>aaaaaa</div>;
+    return <p>aaaaaa</p>;
 }
     
 export default PlantList;

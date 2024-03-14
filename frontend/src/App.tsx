@@ -1,18 +1,19 @@
 import Login from './components/Login'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import SignUp from './components/SignUp'
-import NavBar from './components/NavBar';
 import SideNav from './components/sideNav'
 import PlantList from './components/PlantList'
+import Wrapper from './components/Wrapper';
 
 const router = createBrowserRouter([ 
 	{
 		path: '/',
-		element: <>
-					<NavBar/>
+		element: <div className='flex'>
 					<SideNav/>
-					<PlantList/>
-				</>,
+          <Wrapper>
+					  <PlantList/>
+          </Wrapper>
+				</div>,
 		errorElement: <div>Brat 404 situaciq</div>,
 	},
 	{
