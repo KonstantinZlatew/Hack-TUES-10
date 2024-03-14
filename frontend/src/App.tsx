@@ -1,12 +1,12 @@
-import './App.css'
+import NavBar from './components/NavBar'
+import SideNav from './components/sideNav'
 
 function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <NavBar/>
+      <SideNav/>
     </>
   )
 }
