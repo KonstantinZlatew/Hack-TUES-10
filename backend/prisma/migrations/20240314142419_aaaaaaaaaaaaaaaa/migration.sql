@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Plant" ALTER COLUMN "year" DROP NOT NULL,
+ALTER COLUMN "image_url" DROP NOT NULL;

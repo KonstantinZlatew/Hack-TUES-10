@@ -52,31 +52,59 @@ class dbService {
     }
   }
   async addPlantsToDb() {
-    const apiKey = require('./API_token')
-    const apiUrl = `https://trefle.io/api/v1/plants?page_size=10&token=${apiKey}`;
+    const apiKey = require('./API_token');
+    // page_size=25
+    const batchSize = 20;
+    const delay = 15000;
     try {
-      const response = await axios.get(apiUrl);
-      const plants = response.data.data; // Extract plant data from the response
-      for (let i = 0; i < 5; i++) {
-        console.log(prisma, prisma.plant);
-        await prisma.plant.create({
-          data: {
-            //id: plants[i].id.toString(),
-            name: plants[i].common_name, // Use the common_name property as the name
-            scientific_name: plants[i].scientific_name,
-            image_url: plants[i].image_url,
-            family: plants[i].family,
-            genus: plants[i].genus,
-            year: plants[i].year,
-            bibliography: plants[i].bibliography,
-            description: plants[i].description,
+        for(let page = 1; page < 100; page++){
+          for (let i = 0; i < 20; i++) {
+            const apiUrl = `https://trefle.io/api/v1/species?&token=${apiKey}&page=${page}`;
+            const response = await axios.get(apiUrl);
+            const plants = response.data.data; // Extract plant data from the response
+            console.log(plants[i]?.common_name);
+              await prisma.plant.create({
+                  data: {
+                      name: plants[i]?.common_name,
+                      scientific_name: plants[i]?.scientific_name,
+                      image_url: plants[i]?.image_url,
+                      family: plants[i]?.family,
+                      genus: plants[i]?.genus,
+                      year: plants[i]?.year,
+                      bibliography: plants[i]?.bibliography,
+                      description: plants[i]?.description,
+                  }
+              });
           }
-        });
+            console.log(`Waiting for ${delay / 1000} seconds before adding more plants...`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+    } catch (err) {
+      if (err.response && err.response.status === 429) {
+        // Retry after exponential backoff
+        const retryAfter = parseInt(err.response.headers['retry-after'], 10) || 60;
+        console.log(`Rate limit exceeded. Waiting for ${retryAfter} seconds before retrying...`);
+        await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+        await addPlantsToDb(); // Retry the function
+      } else {
+          throw err; // Re-throw other errors
       }
-    }
-    catch(err){
-      throw err;
-    }
+      }
+  }
+
+  async getPlants() {
+    const totalCount = await prisma.plant.count();
+    const randomSkip = Math.floor(Math.random() * (totalCount - 30));
+    const plants = await prisma.plant.findMany({
+      take: 30, 
+      skip: randomSkip,
+  });
+
+  return plants;
+  }
+
+  async deleteAllPlants(){
+    return await prisma.plant.deleteMany();
   }
   
   
