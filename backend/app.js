@@ -20,7 +20,7 @@ app.post("/user", async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
+//get user by id
 app.get("/user/:id", async (req, res) => {
     try{
         const { id } = req.params.id;
@@ -31,4 +31,29 @@ app.get("/user/:id", async (req, res) => {
     } catch (error) {  
         res.status(500).json({ error: error.message });
     }  
+});
+//add plant to user
+app.put("/user/:userId, plant/:plantId", async (req, res) => {
+    try {
+        const { userId, plantId } = req.params;
+        const db = new dbService();
+        const user = await db.addPlantToUser(userId, plantId);
+
+        user.then(data => res.json({ data: data }));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+//get plants by user id
+app.get("/user/:userId/plants", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const db = new dbService();
+        const user = await db.getPlantsByUserId(userId);
+
+        user.then(data => res.json({ data: data }));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 });
