@@ -30,22 +30,53 @@ class dbService {
 	}
   }
 
-  async addPlantToUser(userId, plantData) {
+  async addPlantToUser(userId, plantId) {
+	/*const plant = await prisma.plant.update({
+		where: {
+			id: plantId,
+		},
+		data: {
+			userId: userId,
+		}
+		});
+		*/
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			plants: true
+		}
+	});
+	if(!user){
+		return { status: 'error', message: 'User not found' };
+	}
+	
     return await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
-        owned_plants: {
-          connect: { id: plantData.id},
+        plants: {
+          connect: { id: plantId},
         }
       },
-      include: {
-        owned_plants: true
-      }
     });
   } 
-
+  async printUserPlants(userId) {
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			plants: true
+		}
+	});
+	if(!user){
+		return { status: 'error', message: 'User not found' };
+	}
+	return user.plants;
+  }
   async findUserById(id) {
     return await prisma.user.findUnique({
       where: {
@@ -372,7 +403,7 @@ class dbService {
       take: 30, 
       skip: randomSkip,
   });
-  console.log(plants);
+//   console.log(plants);
   return plants;
   }
 
