@@ -403,7 +403,7 @@ class dbService {
       take: 30, 
       skip: randomSkip,
   });
-  console.log(plants);
+//   console.log(plants);
   return plants;
   }
 
