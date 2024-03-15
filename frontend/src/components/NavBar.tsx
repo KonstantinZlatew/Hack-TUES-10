@@ -51,7 +51,7 @@ const Navbar = () => {
           </li>
           <Link to="/Login">
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
-            Log in
+            Log in / Log out
           </li>
           </Link>
         </ul>

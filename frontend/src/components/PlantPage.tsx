@@ -42,7 +42,6 @@ function PlantPage () {
                 <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-3xl font-bold mb-4">Information about the plant</h1>
                 <p className="text-lg">{plant.name}</p>
-                <p className="text-lg">{plant.id}</p>
                 <p className="text-lg">Genus: {plant.genus}</p>
                 <p className="text-lg">{plant.scientific_name}</p>
                 <img className="rounded-lg h-60 w-auto mt-4" src={plant.image_url} alt="Plant" />
