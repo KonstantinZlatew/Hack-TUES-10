@@ -48,7 +48,13 @@ class dbService {
 			plants: true
 		}
 	});
-	// console.log(user.plants);
+	const plant = await prisma.plant.findUnique({
+		where: {
+			id: plantId,
+		},
+	});
+	user.plants[0] = plant;
+	console.log(user.plants[0]);
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
