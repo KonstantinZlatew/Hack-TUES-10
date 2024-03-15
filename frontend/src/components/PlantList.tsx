@@ -8,7 +8,7 @@ type Plant = {
     id: number;
 }
 
-const backendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/get_random_plants';
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
