@@ -396,7 +396,7 @@ class dbService {
 		return { status: 'error', message: 'Invalid email or password' };
 	}
 	try{
-		const result = await bcrypt.compare(password, user.password);	
+		const result = await bcrypt.compare(user.password, password);	
 		if (result) {
 			return { status: 'success', message: 'User logged in successfully', user: user };
 		} else {
