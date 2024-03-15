@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
 import useAuthStore from "../stores/authStore";
+import toast from "react-hot-toast";
 
 interface PlantCardProps {
   title: string;
   imageUrl: string;
-  id:number;
+  id: number;
 }
 
 function Card({title, imageUrl, id}: PlantCardProps){
@@ -28,14 +29,15 @@ function Card({title, imageUrl, id}: PlantCardProps){
   async function handleAddToFavourites() {
     try {
         const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
-        if (response.status === 200) {
-            // Plant successfully added to favorites
-            alert('Plant added to favorites!');
-            // Optionally, you can perform additional actions here
-        }
+        // if (response.status === 200) {
+        //     // Plant successfully added to favorites
+        //     alert('Plant added to favorites!');
+        //     // Optionally, you can perform additional actions here
+        // }
+        toast.success(`Plant ${title} successfully added to favourites`);
     } catch (error) {
         console.error('Error adding plant to favorites:', error);
-        alert('Failed to add plant to favorites. Please try again.');
+        toast.error('Failed to add plant to favorites. Please try again.');
     }
 }
 

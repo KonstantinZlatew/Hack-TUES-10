@@ -22,7 +22,7 @@ function PlantList() {
             })
             .then(data => {
                 const plants: Plant[] = data.plants;
-                setPlants(data.plants.filter);
+                setPlants(plants);
                 console.log(data);
             })
             .catch(error => {
