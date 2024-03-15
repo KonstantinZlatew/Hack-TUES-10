@@ -7,7 +7,6 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5000;
 
-
 //create a new user
 app.post("/users", async (req, res) => {
     try {
@@ -16,7 +15,7 @@ app.post("/users", async (req, res) => {
         const userCreationResult = await db.createUser(data);
         
         if (userCreationResult.status === 'success') {
-            res.status(200)// Send success response
+            res.status(200).json({data : userCreationResult})// Send success response
         } else {
             res.status(400).json({ error: userCreationResult.message }); // Send error response
         }
