@@ -14,6 +14,7 @@ function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     useEffect(() => {
+        console.log(backendURL)
         fetch(backendURL)
             .then(res => {
                 if (!res.ok) {

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
-// import useAuthState from '.'
+import useAuthStore from "../stores/authStore";
 
 interface PlantCardProps {
   title: string;
@@ -10,25 +10,35 @@ interface PlantCardProps {
 }
 
 function Card({title, imageUrl, id}: PlantCardProps){
-  // const user = useAuthStore((state) => state.user)
+  const user = useAuthStore((state) => state.user);
 
+  // async function handleAddToFavourites() {
+  //   axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`)
+  //           .then(res => {
+              
+  //           })
+  //           .then(data => {
+  //               // setPlant(data.plant);
+  //               // console.log(plant);
+  //           })
+  //           .catch(error => {
+  //               console.error('Error fetching plant by Id:', error);
+  //           });
+  // }
   async function handleAddToFavourites() {
-    fetch(`http://localhost:5000/users/${1}/plants/${id}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error('Failed to fetch plant form Id');
-                }
-                
-                return res.json();
-            })
-            .then(data => {
-                // setPlant(data.plant);
-                // console.log(plant);
-            })
-            .catch(error => {
-                console.error('Error fetching plant by Id:', error);
-            });
-  }
+    try {
+        const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
+        if (response.status === 200) {
+            // Plant successfully added to favorites
+            alert('Plant added to favorites!');
+            // Optionally, you can perform additional actions here
+        }
+    } catch (error) {
+        console.error('Error adding plant to favorites:', error);
+        alert('Failed to add plant to favorites. Please try again.');
+    }
+}
+
 
   return (
       <div
@@ -50,12 +60,14 @@ function Card({title, imageUrl, id}: PlantCardProps){
               </button>
             </Link>
 
-              <button
-                type="button"
-                className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
-                transition duration-150 ">
-                Favorites
-              </button> 
+            <button
+              type="button"
+              className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
+              transition duration-150"
+              onClick={handleAddToFavourites}
+            >
+              Favorites
+            </button>
             {/* <button
               type="button"
               className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
