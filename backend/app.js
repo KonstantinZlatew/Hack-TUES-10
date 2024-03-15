@@ -36,13 +36,14 @@ app.get("/users/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/user/:userId, plant/:plantId", async (req, res) => {
+app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
         const user = await db.addPlantToUser(userId, plantId);
+        db.printUserPlants(userId);
 
-        user.then(data => res.json({ data: data }));
+        res.json({ data : user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -89,7 +90,7 @@ app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
         plants = await db.getPlants();
-        console.log(plants);
+        // console.log(plants);
 
         res.json({ plants });
     } catch (error) {
@@ -126,7 +127,7 @@ app.get("/Login/:email/:password", async (req, res) => {
         const {email, password} = req.params;
         const db = new dbService(); 
         console.log(email);
-        user = await db.Login(email, password);
+        user= await db.Login(email, password);
         //console.log(result);
         console.log(password);
         if(user.status === 'success'){

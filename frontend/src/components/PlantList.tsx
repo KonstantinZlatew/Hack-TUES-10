@@ -10,6 +10,7 @@ function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     const user = useAuthStore(state => state.user);
+    console.log(user);
 
     useEffect(() => {
         fetch(`${backendURL}/get_random_plants`)
@@ -23,7 +24,6 @@ function PlantList() {
             .then(data => {
                 const plants: Plant[] = data.plants;
                 setPlants(plants);
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error fetching random plants:', error);

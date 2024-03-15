@@ -9,6 +9,7 @@ import Alert from './components/Alert'
 import PlantPage from './components/PlantPage'
 import useAuthStore from './stores/authStore'
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([ 
 	{
@@ -41,7 +42,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-	const currentUser = useAuthStore((state) => state.user)
+	const setUser = useAuthStore(state => state.setUser)
+	
+	useEffect(() => {
+		const userStorage = localStorage.getItem("user")
+		if (!userStorage) {
+			setUser(null)
+		} else {
+			setUser(JSON.parse(userStorage)) 
+		}
+	}, [])
+
   return (<>
 			<RouterProvider router={router} />
 			<Toaster/>
