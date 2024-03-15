@@ -26,10 +26,11 @@
             toast.error("Invalid email!");
             return;
         }
-        const data = {
+        /*const data = {
             email: email,
             password: password
         }
+        */
 
         axios.get(`http://localhost:5000/Login?email=${email}&password=${password}`)
             .then(res=>{
