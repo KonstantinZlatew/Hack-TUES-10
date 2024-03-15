@@ -10,7 +10,7 @@ const port = 5000;
 
 
 //create a new user
-app.post("/user", async (req, res) => {
+app.post("/users", async (req, res) => {
     try {
         const data = req.body;
         const db = new dbService();
@@ -26,7 +26,7 @@ app.post("/user", async (req, res) => {
     }
 });
 //get user by id
-app.get("/user/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
     try{
         const { id } = req.params.id;
         const db = new dbService();
@@ -38,7 +38,7 @@ app.get("/user/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/user/:userId, plant/:plantId", async (req, res) => {
+app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
@@ -51,7 +51,7 @@ app.put("/user/:userId, plant/:plantId", async (req, res) => {
 });
 
 //get plants by user id
-app.get("/user/:userId/plants", async (req, res) => {
+app.get("/users/:userId/plants", async (req, res) => {
     try {
         const { userId } = req.params;
         const db = new dbService();
@@ -110,7 +110,7 @@ app.put("/additional_plant_info", async (req, res) => {
     }
 });
 
-app.get("/get_plant_by_id/:id", async (req, res) => {
+app.get("/plants/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const db = new dbService();

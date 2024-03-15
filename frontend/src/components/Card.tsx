@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
 interface PlantCardProps {
   title: string;
   imageUrl: string;
@@ -6,6 +8,8 @@ interface PlantCardProps {
 }
 
 function Card({title, imageUrl, id}: PlantCardProps){
+  const [isFavorite, setIsFavorite] = useState(false);
+
   return (
       <div
         className="ml-12 w-72 h-96 mt-12 block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-white">
