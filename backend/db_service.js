@@ -48,7 +48,7 @@ class dbService {
 			plants: true
 		}
 	});
-	console.log(user.plants);
+	// console.log(user.plants);
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
@@ -391,7 +391,7 @@ class dbService {
       take: 30, 
       skip: randomSkip,
   });
-  console.log(plants);
+//   console.log(plants);
   return plants;
   }
 
