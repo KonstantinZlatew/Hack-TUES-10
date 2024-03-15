@@ -11,9 +11,9 @@ const router = createBrowserRouter([
 		path: '/',
 		element: <div className='flex'>
 					<SideNav/>
-          <Wrapper>
-		  	<PlantList/>
-          </Wrapper>
+					<Wrapper>
+						<PlantList/>
+					</Wrapper>
 				</div>,
 		errorElement: <div>Brat 404 situaciq</div>,
 	},

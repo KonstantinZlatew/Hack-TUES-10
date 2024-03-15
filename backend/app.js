@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const dbService = require("./db_service");
-const dotenv = require("dotenv");
+require("dotenv/config");
 const cors = require("cors");
-dotenv.config();
+const dbService = require("./db_service");
+console.log(process.env.DATABASE_URL);
 app.use(cors());
 app.use(express.json());
 const port = 5000;
@@ -88,7 +88,7 @@ app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
         plants = await db.getPlants();
-        //console.log(result);
+        console.log(plants);
 
         res.json({ plants });
     } catch (error) {
