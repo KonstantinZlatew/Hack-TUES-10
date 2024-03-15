@@ -392,13 +392,19 @@ class dbService {
 		email: email,
 	  },
 	});
-	bcrypt.compare(password, user.password, function(err, result) {
+	if (!user) {
+		return { status: 'error', message: 'Invalid email or password' };
+	}
+	try{
+		const result = await bcrypt.compare(password, user.password);	
 		if (result) {
 			return { status: 'success', message: 'User logged in successfully', user: user };
 		} else {
 			return { status: 'error', message: 'Invalid email or password' };
 		}
-	});
+	}catch (error) {
+		return { status: 'error', message: 'Failed to login', error: error.message };
+	}
 	
 
 }
