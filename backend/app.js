@@ -125,6 +125,7 @@ app.get("/Login/:data", async (req, res) => {
     try {
         const {email, password} = req.body;
         const db = new dbService();
+        console.log(password);
         user = await db.Login(email, password);
         //console.log(result);
         console.log(password);
