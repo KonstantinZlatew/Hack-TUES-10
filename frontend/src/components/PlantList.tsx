@@ -10,6 +10,7 @@ function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     const user = useAuthStore(state => state.user);
+    console.log(user);
 
     useEffect(() => {
         fetch(`${backendURL}/get_random_plants`)

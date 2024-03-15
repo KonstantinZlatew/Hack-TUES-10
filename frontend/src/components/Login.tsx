@@ -38,8 +38,10 @@
                     toast.error("Invalid email or password")
                 }
                 else if(res.status==200){
-                    toast.success("Logged in!")
-                    setUser(res.data)
+                    toast.success(res.data.user.message)
+                    console.log(res.data.user.user)
+                    setUser(res.data.user.user)
+                    localStorage.setItem("user", JSON.stringify(res.data.user.user))
                     history("/")
                 }
             })

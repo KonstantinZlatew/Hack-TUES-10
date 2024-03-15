@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuthStore from "../stores/authStore";
+import Logout from "./Logout";
 
 const Navbar = () => {
+    const user = useAuthStore(state => state.user)
+
     const [nav, setNav] = useState(false);
   
     const navItems = [
@@ -10,6 +14,21 @@ const Navbar = () => {
       { id: 3, text: 'Notifications' },
       { id: 4, text: 'Log in / Log out' },
     ];
+
+    if (!user) {
+      return <div className='w-full pr-20 sticky top-0 bg-gradient-to-r from-emerald-800 to-pink-300 flex items-center gap-x-4 h-24 px-4 text-white'>
+        <Link to="/Login">
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Log in
+          </li>
+          </Link>
+          <Link to="/Sign-Up">
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Sign Up
+          </li>
+          </Link>
+      </div>
+    }
   
     return (
       <div className='pr-20 sticky top-0 bg-gradient-to-r from-emerald-800 to-pink-300 flex justify-between items-center gap-x-4 h-24 mx-auto px-4 text-white w-full pl-12'>
@@ -49,11 +68,7 @@ const Navbar = () => {
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
             Notifications
           </li>
-          <Link to="/Login">
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
-            Log in
-          </li>
-          </Link>
+          <Logout userId={user.id} />
         </ul>
 
         {/* <ul

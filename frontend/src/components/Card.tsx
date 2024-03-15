@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react';
 import axios from 'axios';
 import useAuthStore from "../stores/authStore";
 import toast from "react-hot-toast";
@@ -34,6 +33,7 @@ function Card({title, imageUrl, id}: PlantCardProps){
         //     alert('Plant added to favorites!');
         //     // Optionally, you can perform additional actions here
         // }
+        console.log(response)
         toast.success(`Plant ${title} successfully added to favourites`);
     } catch (error) {
         console.error('Error adding plant to favorites:', error);
