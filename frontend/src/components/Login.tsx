@@ -42,7 +42,7 @@ function Login() {
               }
           })
           .catch(e=>{
-              alert("Invalid email or password")
+              toast.error("Invalid email or password")
               console.log(e);
           })
 

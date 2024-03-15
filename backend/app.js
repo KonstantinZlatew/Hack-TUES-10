@@ -123,10 +123,12 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
 
 app.get("/Login/:data", async (req, res) => {
     try {
-        const {email, password} = req.params;
+        const {email, password} = req.body;
         const db = new dbService();
+        console.log(password);
         user = await db.Login(email, password);
         //console.log(result);
+        console.log(password);
         if(user.status === 'success'){
         res.status(200).json({ user });
         } else {
