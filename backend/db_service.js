@@ -2,7 +2,6 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const axios = require('axios');
 
-console.log(process.env["DATABASE_URL"])
 class dbService {
   async createUser(data) {
 
@@ -113,7 +112,7 @@ class dbService {
 		//const response2 = await axios.get(api2Url);
 		//const plants2 = response2.data;
 		const plants = await prisma.plant.findMany();
-      for (let i = 1; i < plants.length; i++) {
+      for (let i = 1000; i < 6000; i++) {
 		count++;
 		if(count === 100)
 			{
@@ -155,14 +154,16 @@ class dbService {
 		console.log(api2Key.token1);
 		const additional_info_data = await axios.get(`https://perenual.com/api/species/details/${i}?key=${api2Key.token1}`);
 		const additional_info = additional_info_data.data;
+		let additional_info_ = additional_info;
 		console.log("da2");
         for(let j = 0; j < plants.length; j++){
+			//console.log(plants[j]?.scientific_name);
+			//console.log(additional_info.scientific_name[0]);
+			let additional_info_1 = additional_info_.scientific_name[0].split('\'');
+			let additional_info_2 = additional_info_1[0].trimEnd()
+          if(additional_info_2 === plants[j]?.scientific_name){
 			console.log(plants[j]?.scientific_name);
-			console.log(additional_info.scientific_name[0]);
-          if(additional_info?.scientific_name[0].split('\'') === plants[j]?.scientific_name){
-			console.log(plants[j]?.scientific_name);
-			console.log(additional_info.scientific_name[0]);
-			console.log(additional_info?.poisonous_to_humans);
+			console.log(additional_info_2);
             await prisma.plant.update({
               where: {
 				id: plants[j]?.id,
@@ -197,8 +198,8 @@ class dbService {
             });
           }
       }
-      console.log(`Waiting for ${delay / 1000} seconds before adding more plants...`);
-      await new Promise(resolve => setTimeout(resolve, delay));
+      //console.log(`Waiting for ${delay / 1000} seconds before adding more plants...`);
+      //await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
   async getPlants() {

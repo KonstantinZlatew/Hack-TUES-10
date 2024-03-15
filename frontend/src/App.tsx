@@ -6,7 +6,7 @@ import SideNav from './components/sideNav'
 import PlantList from './components/PlantList'
 import Wrapper from './components/Wrapper'
 import Alert from './components/Alert'
-
+import PlantPage from './components/PlantPage'
 const router = createBrowserRouter([ 
 	{
 		path: '/',
@@ -26,6 +26,13 @@ const router = createBrowserRouter([
 	{
 		path: '/Sign-Up',
 		element: <SignUp/>,
+		errorElement: <div>Brat 404 situaciq</div>,
+	},
+	{
+		path: '/Plants/:PlantId',
+		element:<Wrapper>
+					<PlantPage/>
+				</Wrapper>,
 		errorElement: <div>Brat 404 situaciq</div>,
 	},
 ]);
