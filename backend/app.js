@@ -5,7 +5,7 @@ const cors = require("cors");
 const dbService = require("./db_service");
 app.use(cors());
 app.use(express.json());
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //create a new user
 app.post("/user", async (req, res) => {
