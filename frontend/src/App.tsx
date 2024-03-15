@@ -7,6 +7,8 @@ import PlantList from './components/PlantList'
 import Wrapper from './components/Wrapper'
 import Alert from './components/Alert'
 import PlantPage from './components/PlantPage'
+import useAuthStore from './stores/authStore'
+
 const router = createBrowserRouter([ 
 	{
 		path: '/',
@@ -38,8 +40,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+	const currentUser = useAuthStore((state) => state.user)
   return (<>
 			<RouterProvider router={router} />
+
   			</>);
 }
 
