@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
@@ -12,7 +13,9 @@ const Navbar = () => {
   
     return (
       <div className='pr-20 sticky top-0 bg-gradient-to-r from-emerald-800 to-pink-300 flex justify-between items-center gap-x-4 h-24 mx-auto px-4 text-white w-full pl-12'>
-        <h1 className='text-3xl font-bold text-white'>Botanical Buddy</h1>
+        <Link to="/">
+          <h1 className='text-3xl font-bold text-white'>Botanical Buddy</h1>
+        </Link>
         {/* <div className="mt-4"> */}
             <div className="w-96">
                 <input

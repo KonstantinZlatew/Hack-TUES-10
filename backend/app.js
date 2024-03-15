@@ -111,7 +111,7 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const db = new dbService();
-        plant = await db.getPlantInfo(id);
+        plant = await db.getPlantById(id);
         //console.log(result);
 
         res.json({ plant });
