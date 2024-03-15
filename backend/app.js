@@ -40,10 +40,10 @@ app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
-        const res = await db.addPlantToUser(userId, plantId);
+        const user = await db.addPlantToUser(userId, plantId);
         db.printUserPlants(userId);
 
-        res.status(200).json({ message: res.message, user: res.user });
+        user.then(data => res.json({ data: data }));
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
