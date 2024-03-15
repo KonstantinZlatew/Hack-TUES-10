@@ -31,7 +31,7 @@ class dbService {
   }
 
   async addPlantToUser(userId, plantId) {
-	user = await prisma.user.findUnique({
+	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
 		},
