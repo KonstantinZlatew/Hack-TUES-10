@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const axios = require('axios');
 
+console.log(process.env["DATABASE_URL"])
 class dbService {
   async createUser(data) {
     return await prisma.user.create({
@@ -94,12 +95,13 @@ class dbService {
 
   async getPlants() {
     const totalCount = await prisma.plant.count();
-    const randomSkip = Math.floor(Math.random() * (totalCount - 30));
+    console.log(totalCount)
+    const randomSkip = Math.max(0, Math.floor(Math.random() * (totalCount - 30)));
     const plants = await prisma.plant.findMany({
       take: 30, 
       skip: randomSkip,
   });
-
+  console.log(plants);
   return plants;
   }
 

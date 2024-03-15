@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const dbService = require("./db_service");
-const dotenv = require("dotenv");
+require("dotenv/config");
 const cors = require("cors");
-dotenv.config();
+const dbService = require("./db_service");
+console.log(process.env.DATABASE_URL);
 app.use(cors());
 app.use(express.json());
 const port = 5000;
@@ -84,13 +84,13 @@ app.delete("/delete_plants", async (req, res) => {
     }
 }); 
 //get 30 random plants from db
-app.post("/get_random_plants", async (req, res) => {
+app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
-        res = await db.getRandomPlants();
-        //console.log(result);
+        plants = await db.getPlants();
+        console.log(plants);
 
-        res.then(data => res.json({ data: data }));
+        res.json({ plants });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
