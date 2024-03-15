@@ -126,7 +126,7 @@ app.get("/Login/:email/:password", async (req, res) => {
         const {email, password} = req.params;
         const db = new dbService(); 
         console.log(email);
-        user = await db.Login(email, password);
+        user= await db.Login(email, password);
         //console.log(result);
         console.log(password);
         if(user.status === 'success'){
