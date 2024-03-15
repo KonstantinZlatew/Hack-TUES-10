@@ -121,6 +121,34 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
     }
 });
 
+app.get("/Login/:data", async (req, res) => {
+    try {
+        const data = req.params;
+        const db = new dbService();
+        user = await db.Login(data);
+        //console.log(result);
+        if(user.status === 'success'){
+        res.status(200).json({ user });
+        } else {
+            res.status(400).json({ error: user.message });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete("/users/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const db = new dbService();
+        db.deleteUserById(id);
+        //console.log(result);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
