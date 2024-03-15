@@ -29,7 +29,7 @@ function PlantList() {
     }, []);
     
     return (
-        <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mb-10">
             {plants.map(plant => (
                 <Card key={plant.id} title={plant.name !== null ? plant.name : plant.scientific_name} imageUrl={plant.image_url} />
             ))}
