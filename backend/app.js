@@ -36,7 +36,7 @@ app.get("/users/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/user/:userId, plant/:plantId", async (req, res) => {
+app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
