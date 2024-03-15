@@ -16,8 +16,11 @@ app.post("/user", async (req, res) => {
         const db = new dbService();
         const user = await db.createUser(data);
         
-        user
-        .then(data => res.json({ data : data }));
+        if (userCreationResult.status === 'success') {
+            res.status(69)// Send success response
+        } else {
+            res.status(400).json({ error: userCreationResult.message }); // Send error response
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -91,6 +94,30 @@ app.get("/get_random_plants", async (req, res) => {
         console.log(plants);
 
         res.json({ plants });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.put("/additional_plant_info", async (req, res) => {
+    try {
+        const db = new dbService();
+        result = await db.aditionalPlantInfo();
+        //console.log(result);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get("/get_plant_by_id/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const db = new dbService();
+        plant = await db.getPlantInfo(id);
+        //console.log(result);
+
+        res.json({ plant });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
