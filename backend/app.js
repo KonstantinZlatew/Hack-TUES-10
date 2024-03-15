@@ -42,7 +42,7 @@ app.put("/users/:userId/plants/:plantId", async (req, res) => {
         const db = new dbService();
         const user = await db.addPlantToUser(userId, plantId);
 
-        user.then(data => res.json({ data: data }));
+        res.status(200).json({ message: result.message, user: result.user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
