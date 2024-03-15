@@ -386,13 +386,13 @@ class dbService {
   async deleteAllPlants(){
     return await prisma.plant.deleteMany();
   }
-  async Login(data) {
+  async Login(email, password) {
 	const user = await prisma.user.findUnique({
 	  where: {
-		email: data.email,
+		email: email,
 	  },
 	});
-	bcrypt.compare(data.password, user.password, function(err, result) {
+	bcrypt.compare(password, user.password, function(err, result) {
 		if (result) {
 			return { status: 'success', message: 'User logged in successfully', user: user };
 		} else {
