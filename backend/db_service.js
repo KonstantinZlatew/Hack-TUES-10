@@ -30,13 +30,33 @@ class dbService {
 	}
   }
 
-  async addPlantToUser(userId, plantData) {
+  async addPlantToUser(userId, plantId) {
+	user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		inclde: {
+			plants: true
+		}
+	});
+	if(!user){
+		return { status: 'error', message: 'User not found' };
+	}
+	const plant = await prisma.plant.findUnique({
+		where: {
+			id: plantId,
+		},
+		data: {
+			userId: userId,
+		}
+		});
+	
     return await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
-        owned_plants: {
+        plants: {
           connect: { id: plantData.id},
         }
       },
