@@ -18,7 +18,7 @@ function PlantPage () {
     const [plant, setPlant] = useState<Plant | null>(null);
 
     useEffect(() => {
-        fetch(`${backendURL}/get_plant_by_id/${PlantId}`)
+        fetch(`${backendURL}/get_plant_by_id/${plantId}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Failed to fetch plant form Id');
