@@ -123,7 +123,7 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
 
 app.get("/Login/:data", async (req, res) => {
     try {
-        const {email, password} = req.params;
+        const {email, password} = req.body;
         const db = new dbService();
         user = await db.Login(email, password);
         //console.log(result);
