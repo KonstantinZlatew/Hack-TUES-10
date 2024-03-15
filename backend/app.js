@@ -7,7 +7,6 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5000;
 
-
 //create a new user
 app.post("/user", async (req, res) => {
     try {
@@ -16,7 +15,7 @@ app.post("/user", async (req, res) => {
         const userCreationResult = await db.createUser(data);
         
         if (userCreationResult.status === 'success') {
-            res.status(200)// Send success response
+            res.status(200).json({data : userCreationResult})// Send success response
         } else {
             res.status(400).json({ error: userCreationResult.message }); // Send error response
         }
@@ -117,6 +116,34 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
         //console.log(result);
 
         res.json({ plant });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get("/Login/:data", async (req, res) => {
+    try {
+        const data = req.params;
+        const db = new dbService();
+        user = await db.Login(data);
+        //console.log(result);
+        if(user.status === 'success'){
+        res.status(200).json({ user });
+        } else {
+            res.status(400).json({ error: user.message });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.delete("/users/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const db = new dbService();
+        db.deleteUserById(id);
+        //console.log(result);
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

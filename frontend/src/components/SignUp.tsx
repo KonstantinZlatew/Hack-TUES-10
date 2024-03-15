@@ -1,9 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
-import { toast } from 'react-toastify'
-
-
+import toast from 'react-hot-toast'
+import useAuthStore from "../stores/authStore"
 
 function Login() {
   const history=useNavigate();
@@ -12,8 +11,21 @@ function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
 
+  const setUser = useAuthStore(state => state.setUser)
+
   async function submit(e: any){
     e.preventDefault();
+
+    if (!username || username.length === 0 || !password || password.length === 0 || !email || email.length === 0) {
+      toast.error("Credentials should not be empty");
+      return;
+    }
+
+    if(!email.includes('@') || !email.includes('.')){
+      toast.error("Invalid email!");
+      return;
+    }
+
     axios.post("http://localhost:5000/user",{
         username,email,password
     })
@@ -22,11 +34,13 @@ function Login() {
             toast.error("User already exists")
         }
         else if(res.status==200){
-            history("/Login",{state:{id:email}})
+          toast.success("Account successfully created!")
+          setUser(res.data)
+          history("/")
         }
     })
     .catch(e=>{
-        toast.error("Wrong account details!")
+        toast.error("This account already exists!")
         console.log(e);
     })
   }
@@ -34,6 +48,7 @@ function Login() {
 
   return (
     <div className="my-auto flex-1 max-h-[365px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
+      
       <h1 className="text-center text-2xl font-bold mb-4">Signup</h1>
       <form action="POST">
         <input 
