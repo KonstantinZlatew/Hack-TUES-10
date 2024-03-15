@@ -15,11 +15,11 @@ function Card({title, imageUrl}: PlantCardProps){
         </a>
         <div className="p-6">
           <h5
-            className="mb-2 text-xl font-medium leading-tight text-zinc-950">
+            className="mb-2 text-xl font-medium leading-tight text-zinc-950 text-center">
             {title}</h5>
             <button
               type="button"
-              className="inline-block bg-emerald-800 rounded-full  mr-6 bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
+              className="inline-block bg-emerald-800 rounded-full mr-8 bg-primary my-6 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
               transition duration-150 ">
               Learn More
             </button>
