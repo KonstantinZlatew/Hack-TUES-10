@@ -121,9 +121,9 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
     }
 });
 
-app.get("/Login/:data", async (req, res) => {
+app.get("/Login/:email/:password", async (req, res) => {
     try {
-        const {email, password} = req.body;
+        const {email, password} = req.query;
         const db = new dbService();
         console.log(password);
         user = await db.Login(email, password);
