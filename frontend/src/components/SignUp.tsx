@@ -2,6 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 import toast, { Toaster } from 'react-hot-toast'
+import useAuthStore from "../stores/authStore"
 
 
 
@@ -11,6 +12,8 @@ function Login() {
   const [username, setUsername] = useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+
+  const setUser = useAuthStore(state => state.setUser)
 
   async function submit(e: any){
     e.preventDefault();
@@ -22,7 +25,8 @@ function Login() {
             toast.error("User already exists")
         }
         else if(res.status==200){
-            history("/Login",{state:{id:email}})
+            setUser(res.data)
+            history("/")
         }
     })
     .catch(e=>{
