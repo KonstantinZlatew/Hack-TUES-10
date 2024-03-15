@@ -31,6 +31,15 @@ class dbService {
   }
 
   async addPlantToUser(userId, plantId) {
+	const plant = await prisma.plant.update({
+		where: {
+			id: plantId,
+		},
+		data: {
+			userId: userId,
+		}
+		});
+		
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
@@ -42,14 +51,6 @@ class dbService {
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
-	const plant = await prisma.plant.update({
-		where: {
-			id: plantId,
-		},
-		data: {
-			userId: userId,
-		}
-		});
 	
     return await prisma.user.update({
       where: {
@@ -57,7 +58,7 @@ class dbService {
       },
       data: {
         plants: {
-          connect: { id: plantData.id},
+          connect: { id: plantId},
         }
       },
     });
