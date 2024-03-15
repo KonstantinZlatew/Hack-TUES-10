@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
+// import useAuthState from '.'
+
 interface PlantCardProps {
   title: string;
   imageUrl: string;
@@ -8,7 +10,25 @@ interface PlantCardProps {
 }
 
 function Card({title, imageUrl, id}: PlantCardProps){
-  const [isFavorite, setIsFavorite] = useState(false);
+  // const user = useAuthStore((state) => state.user)
+
+  async function handleAddToFavourites() {
+    fetch(`http://localhost:5000/users/${1}/plants/${id}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Failed to fetch plant form Id');
+                }
+                
+                return res.json();
+            })
+            .then(data => {
+                // setPlant(data.plant);
+                // console.log(plant);
+            })
+            .catch(error => {
+                console.error('Error fetching plant by Id:', error);
+            });
+  }
 
   return (
       <div
@@ -29,12 +49,19 @@ function Card({title, imageUrl, id}: PlantCardProps){
                 Learn More
               </button>
             </Link>
-            <button
+
+              <button
+                type="button"
+                className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
+                transition duration-150 ">
+                Favorites
+              </button> 
+            {/* <button
               type="button"
               className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
               transition duration-150 ">
               Favorites
-            </button>
+            </button> */}
         </div>
       </div>
   );

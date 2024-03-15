@@ -109,7 +109,7 @@ app.put("/additional_plant_info", async (req, res) => {
     }
 });
 
-app.get("/plants/:id", async (req, res) => {
+app.get("/get_plant_by_id/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const db = new dbService();
