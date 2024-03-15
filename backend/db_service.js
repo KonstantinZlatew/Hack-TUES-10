@@ -39,7 +39,7 @@ class dbService {
 			userId: userId,
 		}
 		});
-		
+
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
@@ -48,6 +48,7 @@ class dbService {
 			plants: true
 		}
 	});
+	console.log(user.plants);
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
