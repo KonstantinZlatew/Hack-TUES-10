@@ -27,13 +27,14 @@ function Card({title, imageUrl, id}: PlantCardProps){
   // }
   async function handleAddToFavourites() {
     try {
+        console.log("USERID:", user?.id);
         const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
         // if (response.status === 200) {
         //     // Plant successfully added to favorites
         //     alert('Plant added to favorites!');
         //     // Optionally, you can perform additional actions here
         // }
-        console.log(response)
+        // console.log(response)
         toast.success(`Plant ${title} successfully added to favourites`);
     } catch (error) {
         console.error('Error adding plant to favorites:', error);
