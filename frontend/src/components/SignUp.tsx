@@ -75,7 +75,7 @@ function Login() {
             onClick={submit} 
             className="text-lg w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
           >
-            Signup
+            Sign up
           </button>
         </Link>
       </form>

@@ -1,32 +1,33 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
-
-type Plant = {
-    name: string;
-    image_url: string;
-    scientific_name:string;
-    id: number;
-}
+import useAuthStore from "../stores/authStore";
+import toast from "react-hot-toast";
+import { Plant } from "../types/types";
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
+    const user = useAuthStore(state => state.user);
+
     useEffect(() => {
         fetch(`${backendURL}/get_random_plants`)
             .then(res => {
                 if (!res.ok) {
-                    throw new Error('Failed to fetch random plants');
+                    toast.error('Failed to fetch random plants');
+                    return;
                 }
                 return res.json();
             })
             .then(data => {
-                setPlants(data.plants);
+                const plants: Plant[] = data.plants;
+                setPlants(plants);
                 console.log(data);
             })
             .catch(error => {
                 console.error('Error fetching random plants:', error);
+                toast.error('Error fetching random plants:', error)
             });
     }, []);
     
