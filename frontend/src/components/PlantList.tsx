@@ -24,7 +24,6 @@ function PlantList() {
             .then(data => {
                 const plants: Plant[] = data.plants;
                 setPlants(plants);
-                console.log(data);
             })
             .catch(error => {
                 console.error('Error fetching random plants:', error);

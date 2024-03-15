@@ -36,7 +36,7 @@ app.get("/users/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/users/:userId/plant/:plantId", async (req, res) => {
+app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
@@ -89,7 +89,7 @@ app.get("/get_random_plants", async (req, res) => {
     try {
         const db = new dbService();
         plants = await db.getPlants();
-        console.log(plants);
+        // console.log(plants);
 
         res.json({ plants });
     } catch (error) {
