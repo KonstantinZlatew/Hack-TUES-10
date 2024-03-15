@@ -15,7 +15,7 @@ function Card({title, imageUrl, id}: PlantCardProps){
             alt="No such image available" />
         <div className="p-6">
           <h5
-            className="mb-2 text-xl font-medium leading-tight text-zinc-950">
+            className="mb-2 text-xl font-medium leading-tight text-zinc-950 text-center">
             {title}</h5>
             <Link to={`/Plants/${id}`}>
               <button

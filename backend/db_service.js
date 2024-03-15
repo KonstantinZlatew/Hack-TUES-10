@@ -5,14 +5,28 @@ const axios = require('axios');
 console.log(process.env["DATABASE_URL"])
 class dbService {
   async createUser(data) {
-    return await prisma.user.create({
-      data: {
-        email: data.email,
-        password: data.password,
-        username: data.username,
-        plants: {}
-      },
-    });
+
+	const existingUser = await prisma.user.findUnique({
+		where: {
+		  email: data.email,
+		},
+	  });
+	if(existingUser) {
+		return { status: 'error', message: 'User with this email already exists' };
+	} 
+	try{
+		const newUser = await prisma.user.create({
+		data: {
+			email: data.email,
+			password: data.password,
+			username: data.username,
+			plants: {}
+		},
+		});
+		return { status: 'success', message: 'User created successfully', user: newUser };
+	}catch (error) {
+		return { status: 'error', message: 'Failed to create user', error: error.message };
+	}
   }
 
   async addPlantToUser(userId, plantData) {
@@ -92,7 +106,7 @@ class dbService {
       }
   }
   async aditionalPlantInfo(){
-	const delay = 15000;
+	const delay = 5000;
     const api2Key = require('./API2_token'); 
 		let count = 0;
 		//const api2Url = `https://perenual.com/api/species-list?key=${api2Key.token1}&page=${page}`;
@@ -105,10 +119,38 @@ class dbService {
 			{
 				api2Key.token1 = api2Key.token2;
 			}	
-			if(count === 200)
+		if(count === 200)
 			{
 				api2Key.token1 = api2Key.token3;
 			}
+		if(count === 300)
+			{
+				api2Key.token1 = api2Key.token4;
+			}	
+		if(count === 400)
+			{
+				api2Key.token1 = api2Key.token5;
+			}
+		if(count === 500)
+			{
+				api2Key.token1 = api2Key.token6;
+			}	
+		if(count === 600)
+			{
+				api2Key.token1 = api2Key.token7;
+			}
+		if(count === 700)
+			{
+				api2Key.token1 = api2Key.token8;
+			}	
+		if(count === 800)
+			{
+				api2Key.token1 = api2Key.token9;
+			}
+		if(count === 900)
+		{
+			api2Key.token1 = api2Key.token10;
+		}
 		console.log("da");
 		console.log(api2Key.token1);
 		const additional_info_data = await axios.get(`https://perenual.com/api/species/details/${i}?key=${api2Key.token1}`);
@@ -117,13 +159,13 @@ class dbService {
         for(let j = 0; j < plants.length; j++){
 			console.log(plants[j]?.scientific_name);
 			console.log(additional_info.scientific_name[0]);
-          if(additional_info?.scientific_name[0] === plants[j]?.scientific_name){
+          if(additional_info?.scientific_name[0].split('\'') === plants[j]?.scientific_name){
 			console.log(plants[j]?.scientific_name);
 			console.log(additional_info.scientific_name[0]);
 			console.log(additional_info?.poisonous_to_humans);
             await prisma.plant.update({
               where: {
-				id: String(j+1)
+				id: plants[j]?.id,
               },
               data: {
                 cycle: additional_info?.cycle,
@@ -155,8 +197,8 @@ class dbService {
             });
           }
       }
-      //console.log(`Waiting for ${delay / 1000} seconds before adding more plants...`);
-      //await new Promise(resolve => setTimeout(resolve, delay));
+      console.log(`Waiting for ${delay / 1000} seconds before adding more plants...`);
+      await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
   async getPlants() {
