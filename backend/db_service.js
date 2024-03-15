@@ -31,7 +31,7 @@ class dbService {
   }
 
   async addPlantToUser(userId, plantId) {
-	const plant = await prisma.plant.update({
+	/*const plant = await prisma.plant.update({
 		where: {
 			id: plantId,
 		},
@@ -39,7 +39,7 @@ class dbService {
 			userId: userId,
 		}
 		});
-
+		*/
 	const user = await prisma.user.findUnique({
 		where: {
 			id: userId,
