@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { toast } from "react-hot-toast";
 import useAuthStore from "../stores/authStore";
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 function Login() {
 
@@ -27,7 +28,7 @@ function Login() {
         return;
       }
 
-    axios.post("http://localhost:5000/user",{
+    axios.post(`${backendURL}/user`,{
               email,password
           })
           .then(res=>{
