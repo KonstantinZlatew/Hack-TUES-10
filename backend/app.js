@@ -36,7 +36,7 @@ app.get("/users/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/user/:userId, plant/:plantId", async (req, res) => {
+app.put("/user/:userId/plant/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
@@ -126,7 +126,7 @@ app.get("/Login/:email/:password", async (req, res) => {
         const {email, password} = req.params;
         const db = new dbService(); 
         console.log(email);
-        user = await db.Login(email, password);
+        user= await db.Login(email, password);
         //console.log(result);
         console.log(password);
         if(user.status === 'success'){
