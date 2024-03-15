@@ -75,7 +75,7 @@ class dbService {
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
-	console.log(user.plants);
+	return user.plants;
   }
   async findUserById(id) {
     return await prisma.user.findUnique({
