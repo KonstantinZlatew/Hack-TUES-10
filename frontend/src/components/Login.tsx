@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import { toast } from "react-hot-toast";
+import useAuthStore from "../stores/authStore";
 
 
 function Login() {
@@ -10,34 +12,40 @@ function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
 
+  const setUser = useAuthStore(state => state.setUser)
+
   async function submit(e: any){
-      e.preventDefault();
+    e.preventDefault();
 
-      try{
+    if (!password || password.length === 0 || !email || email.length === 0) {
+        toast.error("Credentials should not be empty!");
+        return;
+      }
+  
+      if(!email.includes('@') || !email.includes('.')){
+        toast.error("Invalid email!");
+        return;
+      }
 
-          await axios.post("http://localhost:8000/",{
+    axios.post("http://localhost:5000/user",{
               email,password
           })
           .then(res=>{
-              if(res.data=="exist"){
-                  history("/home",{state:{id:email}})
+              if(res.status!=200){
+                toast.error("Invalid email or password")
               }
-              else if(res.data=="notexist"){
-                  alert("User have not sign up")
+              else if(res.status==200){
+                toast.success("Logged in!")
+                setUser(res.data)
+                history("/")
               }
           })
           .catch(e=>{
-              alert("wrong details")
+              alert("Invalid email or password")
               console.log(e);
           })
 
       }
-      catch(e){
-          console.log(e);
-
-      }
-
-  }
 
   return (
     <div className="my-auto flex-1 max-h-[300px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
