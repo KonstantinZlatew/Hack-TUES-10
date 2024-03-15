@@ -5,34 +5,58 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
-  id       String  @id @default(uuid())
-  email    String  @unique
-  username String?
-  password String
-  plants   Plant[]
+    id       String  @id @default(uuid())
+    email    String  @unique
+    username String?
+    password String
+    plants   Plant[]
 }
 
 model Plant {
-  id              String  @id @default(uuid())
-  name            String? @default("No common name")
-  description     String  @default("No description")
-  image_url       String?
-  scientific_name String?
-  family          String?
-  genus           String?
-  year            Int?
-  bibliography    String?
-  User            User?   @relation(fields: [userId], references: [id])
-  userId          String?
+    id                               String   @id @default(uuid())
+    name                             String?  @default("No common name")
+    description                      String   @default("No description")
+    image_url                        String?
+    scientific_name                  String?
+    family                           String?
+    genus                            String?
+    year                             Int?
+    bibliography                     String?
+    cycle                            String?
+    sunlight                         String?
+    watering                         String?
+    volume_water_requirement_unit    String?
+    volume_water_requirement_value   String?
+    watering_time                    String?
+    watering_general_benchmark_value String?
+    watering_general_benchmark_unit  String?
+    pruning_month                    String[]
+    flowers                          Boolean?
+    flowering_season                 String?
+    color                            String?
+    fruits                           Boolean?
+    edible_fruit                     Boolean?
+    fruit_color                      String[]
+    harvest_season                   String?
+    harvest_method                   String?
+    leaf_color                       String[]
+    growth_rate                      String?
+    maintenance                      String?
+    medicinal                        Boolean?
+    poisonous_to_humans              Boolean?
+    invasive                         Boolean?
+    indoor                           Boolean?
+    User                             User?    @relation(fields: [userId], references: [id])
+    userId                           String?
 }
 
 // model UserToPlant {

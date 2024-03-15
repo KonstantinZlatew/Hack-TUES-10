@@ -96,6 +96,30 @@ app.get("/get_random_plants", async (req, res) => {
     }
 });
 
+app.put("/additional_plant_info", async (req, res) => {
+    try {
+        const db = new dbService();
+        result = await db.aditionalPlantInfo();
+        //console.log(result);
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get("/get_plant_by_id/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const db = new dbService();
+        plant = await db.getPlantInfo(id);
+        //console.log(result);
+
+        res.json({ plant });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
