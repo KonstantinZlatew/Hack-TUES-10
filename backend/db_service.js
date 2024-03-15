@@ -48,13 +48,6 @@ class dbService {
 			plants: true
 		}
 	});
-	const plant = await prisma.plant.findUnique({
-		where: {
-			id: plantId,
-		},
-	});
-	user.plants[0] = plant;
-	console.log(user.plants[0]);
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
@@ -70,7 +63,20 @@ class dbService {
       },
     });
   } 
-
+  async printUserPlants(userId) {
+	const user = await prisma.user.findUnique({
+		where: {
+			id: userId,
+		},
+		include: {
+			plants: true
+		}
+	});
+	if(!user){
+		return { status: 'error', message: 'User not found' };
+	}
+	console.log(user.plants);
+  }
   async findUserById(id) {
     return await prisma.user.findUnique({
       where: {
