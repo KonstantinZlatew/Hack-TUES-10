@@ -17,7 +17,7 @@ app.post("/user", async (req, res) => {
         const user = await db.createUser(data);
         
         if (userCreationResult.status === 'success') {
-            res.json({ data: userCreationResult }); // Send success response
+            res.status(69)// Send success response
         } else {
             res.status(400).json({ error: userCreationResult.message }); // Send error response
         }
