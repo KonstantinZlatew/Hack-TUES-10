@@ -43,7 +43,7 @@ app.put("/users/:userId/plants/:plantId", async (req, res) => {
         const user = await db.addPlantToUser(userId, plantId);
         db.printUserPlants(userId);
 
-        user.then(data => res.json({ data: data }));
+        res.json({ data : user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
