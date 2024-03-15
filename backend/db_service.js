@@ -40,9 +40,6 @@ class dbService {
           connect: { id: plantData.id},
         }
       },
-      include: {
-        owned_plants: true
-      }
     });
   } 
 
