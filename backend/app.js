@@ -3,10 +3,9 @@ const app = express();
 require("dotenv/config");
 const cors = require("cors");
 const dbService = require("./db_service");
-console.log(process.env.DATABASE_URL);
 app.use(cors());
 app.use(express.json());
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 
 //create a new user
@@ -14,10 +13,10 @@ app.post("/users", async (req, res) => {
     try {
         const data = req.body;
         const db = new dbService();
-        const user = await db.createUser(data);
+        const userCreationResult = await db.createUser(data);
         
         if (userCreationResult.status === 'success') {
-            res.status(69)// Send success response
+            res.status(200)// Send success response
         } else {
             res.status(400).json({ error: userCreationResult.message }); // Send error response
         }

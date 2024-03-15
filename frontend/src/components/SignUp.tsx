@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
+import { toast } from 'react-toastify'
+
 
 
 function Login() {
@@ -16,15 +18,15 @@ function Login() {
         username,email,password
     })
     .then(res=>{
-        if(res.status==69){
-            alert("User already exists")
+        if(res.status!=200){
+            toast.error("User already exists")
         }
-        else if(res.status!=69){
-            history("/home",{state:{id:email}})
+        else if(res.status==200){
+            history("/Login",{state:{id:email}})
         }
     })
     .catch(e=>{
-        alert("wrong details")
+        toast.error("Wrong account details!")
         console.log(e);
     })
   }
@@ -52,16 +54,18 @@ function Login() {
           placeholder="Password" 
           className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
         />
-        <button 
-          type="submit" 
-          onClick={submit} 
-          className="text-lg w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
-        >
-          Signup
-        </button>
+        <Link to='/Login'>
+          <button 
+            type="submit" 
+            onClick={submit} 
+            className="text-lg w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+          >
+            Signup
+          </button>
+        </Link>
       </form>
       <div className="text-center mt-4">
-        <Link to="/" className="text-indigo-500 underline">Login Page</Link>
+        <Link to="/Login" className="text-indigo-500 underline">Login Page</Link>
       </div>
   </div>
 
