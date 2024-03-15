@@ -35,7 +35,7 @@ class dbService {
 		where: {
 			id: userId,
 		},
-		inclde: {
+		include: {
 			plants: true
 		}
 	});
