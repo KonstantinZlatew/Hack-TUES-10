@@ -36,7 +36,23 @@ function PlantPage () {
     }, [plantId]);
     return (
         <>
-            <div className="flex items-center flex flex-1 my-32 justify-center h-full">
+            <div className="h-full bg-gradient-to-r from-emerald-800 to-pink-300">
+            {plant ? (
+                <div className="flex">
+                    <img className="rounded-lg  h-[700px] w-[600px] m-3" src={plant.image_url} alt="Plant" />
+                    <div className="flex flex-col items-center flex flex-1 py-36 justify-center h-full">
+                        <h1 className="text-3xl px-72 text-emerald-900 text-center font-bold mb-4 pt-28">Information about the plant</h1>
+                        <p className="text-lg"><span className="font-bold text-emerald-900">NAME: </span> {plant.name}</p>
+                        <p className="text-lg"><span className="font-bold text-emerald-900">GENUS: </span>{plant.genus}</p>
+                        <p className="text-lg"><span className="font-bold text-emerald-900">SPECIFIC NAME: </span>{plant.scientific_name}</p>
+                        <p className="text-lg"><span className="font-bold text-emerald-900">FAMILY: </span>{plant.family}</p>
+                    </div>
+                </div>
+            ) : (
+                <p className="text-xl font-medium ">Loading...</p>
+            )}
+            </div>
+            {/* <div className="flex items-center flex flex-1 py-36 justify-center h-full">
             {plant ? (
                 <div className="flex flex-col items-center justify-center text-center">
                 <h1 className="text-3xl font-bold mb-4">Information about the plant</h1>
@@ -49,7 +65,7 @@ function PlantPage () {
             ) : (
                 <p className="text-xl font-medium ">Loading...</p>
             )}
-            </div>
+            </div> */}
         </>
     )
 
