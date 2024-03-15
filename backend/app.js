@@ -8,7 +8,7 @@ app.use(express.json());
 const port = process.env.PORT || 5000;
 
 //create a new user
-app.post("/users", async (req, res) => {
+app.post("/user", async (req, res) => {
     try {
         const data = req.body;
         const db = new dbService();
@@ -36,7 +36,7 @@ app.get("/users/:id", async (req, res) => {
     }  
 });
 //add plant to user
-app.put("/users/:userId/plants/:plantId", async (req, res) => {
+app.put("/user/:userId, plant/:plantId", async (req, res) => {
     try {
         const { userId, plantId } = req.params;
         const db = new dbService();
@@ -49,7 +49,7 @@ app.put("/users/:userId/plants/:plantId", async (req, res) => {
 });
 
 //get plants by user id
-app.get("/users/:userId/plants", async (req, res) => {
+app.get("/user/:userId/plants", async (req, res) => {
     try {
         const { userId } = req.params;
         const db = new dbService();
@@ -123,9 +123,9 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
 
 app.get("/Login/:email/:password", async (req, res) => {
     try {
-        const {email, password} = req.query;
-        const db = new dbService();
-        console.log(password);
+        const {email, password} = req.params;
+        const db = new dbService(); 
+        console.log(email);
         user = await db.Login(email, password);
         //console.log(result);
         console.log(password);
