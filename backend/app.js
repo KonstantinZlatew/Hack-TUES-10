@@ -24,7 +24,7 @@ app.post("/user", async (req, res) => {
     }
 });
 //get user by id
-app.get("/user/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
     try{
         const { id } = req.params.id;
         const db = new dbService();
@@ -123,9 +123,9 @@ app.get("/get_plant_by_id/:id", async (req, res) => {
 
 app.get("/Login/:email/:password", async (req, res) => {
     try {
-        const {email, password} = req.query;
-        const db = new dbService();
-        console.log(password);
+        const {email, password} = req.params;
+        const db = new dbService(); 
+        console.log(email);
         user = await db.Login(email, password);
         //console.log(result);
         console.log(password);

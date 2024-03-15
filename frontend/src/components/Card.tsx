@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import axios from 'axios';
+import useAuthStore from "../stores/authStore";
+
 interface PlantCardProps {
   title: string;
   imageUrl: string;
@@ -6,6 +10,36 @@ interface PlantCardProps {
 }
 
 function Card({title, imageUrl, id}: PlantCardProps){
+  const user = useAuthStore((state) => state.user);
+
+  // async function handleAddToFavourites() {
+  //   axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`)
+  //           .then(res => {
+              
+  //           })
+  //           .then(data => {
+  //               // setPlant(data.plant);
+  //               // console.log(plant);
+  //           })
+  //           .catch(error => {
+  //               console.error('Error fetching plant by Id:', error);
+  //           });
+  // }
+  async function handleAddToFavourites() {
+    try {
+        const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
+        if (response.status === 200) {
+            // Plant successfully added to favorites
+            alert('Plant added to favorites!');
+            // Optionally, you can perform additional actions here
+        }
+    } catch (error) {
+        console.error('Error adding plant to favorites:', error);
+        alert('Failed to add plant to favorites. Please try again.');
+    }
+}
+
+
   return (
       <div
         className="ml-12 w-72 h-96 mt-12 block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
@@ -26,12 +60,21 @@ function Card({title, imageUrl, id}: PlantCardProps){
                 Learn More
               </button>
             </Link>
+
             <button
+              type="button"
+              className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
+              transition duration-150"
+              onClick={handleAddToFavourites}
+            >
+              Favorites
+            </button>
+            {/* <button
               type="button"
               className="inline-block bg-emerald-800 rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
               transition duration-150 ">
               Favorites
-            </button>
+            </button> */}
         </div>
       </div>
   );
