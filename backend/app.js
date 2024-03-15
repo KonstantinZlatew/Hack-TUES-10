@@ -16,8 +16,11 @@ app.post("/user", async (req, res) => {
         const db = new dbService();
         const user = await db.createUser(data);
         
-        user
-        .then(data => res.json({ data : data }));
+        if (userCreationResult.status === 'success') {
+            res.json({ data: userCreationResult }); // Send success response
+        } else {
+            res.status(400).json({ error: userCreationResult.message }); // Send error response
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
