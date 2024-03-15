@@ -4,16 +4,17 @@ import SignUp from './components/SignUp'
 import Card from './components/Card'
 import SideNav from './components/sideNav'
 import PlantList from './components/PlantList'
-import Wrapper from './components/Wrapper';
+import Wrapper from './components/Wrapper'
+import Alert from './components/Alert'
 
 const router = createBrowserRouter([ 
 	{
 		path: '/',
 		element: <div className='flex'>
 					<SideNav/>
-          <Wrapper>
-		  	<PlantList/>
-          </Wrapper>
+					<Wrapper>
+						<PlantList/>
+					</Wrapper>
 				</div>,
 		errorElement: <div>Brat 404 situaciq</div>,
 	},
