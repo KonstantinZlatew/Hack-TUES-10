@@ -8,13 +8,13 @@ type Plant = {
     id: number;
 }
 
-const backendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000/get_random_plants';
+const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     useEffect(() => {
-        fetch(backendURL)
+        fetch(`${backendURL}/get_random_plants`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Failed to fetch random plants');
