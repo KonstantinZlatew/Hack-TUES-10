@@ -36,7 +36,7 @@
         }
         */
 
-        axios.get(`http://localhost:5000/Login?email=${email}&password=${password}`)
+        axios.get(`http://localhost:5000/Login/${email}/${password}`)
             .then(res=>{
                 if(res.status!=200){
                     toast.error("Invalid email or password")

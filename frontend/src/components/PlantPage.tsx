@@ -14,12 +14,11 @@ type Plant = {
 const backendURL = import.meta.env.VITE_BACKEND_URL;
 
 function PlantPage () {
-    const { PlantId } = useParams();
-    console.log(PlantId);
+    const { plantId } = useParams();
     const [plant, setPlant] = useState<Plant | null>(null);
 
     useEffect(() => {
-        fetch(`${backendURL}/get_plant_by_id/${PlantId}`)
+        fetch(`${backendURL}/get_plant_by_id/${plantId}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Failed to fetch plant form Id');
@@ -29,12 +28,12 @@ function PlantPage () {
             })
             .then(data => {
                 setPlant(data.plant);
-                console.log(plant);
+                console.log("PLANT:", plant);
             })
             .catch(error => {
                 console.error('Error fetching plant by Id:', error);
             });
-    }, [PlantId]);
+    }, [plantId]);
     return (
         <>
             <div className="flex items-center flex flex-1 my-32 justify-center h-full">

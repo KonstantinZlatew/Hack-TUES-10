@@ -15,6 +15,7 @@ class dbService {
 	} 
 	try{
 		const hashedPassword = await bcrypt.hash(data.password, 10);
+		console.log(hashedPassword);
 		const newUser = await prisma.user.create({
 		data: {
 			email: data.email,
@@ -396,8 +397,9 @@ class dbService {
 		return { status: 'error', message: 'Invalid email or password' };
 	}
 	try{
-		const result = await bcrypt.compare(user.password, password);	
-		if (result) {
+		console.log(user.password);
+		const result = await bcrypt.compare(password, user.password);	
+		if (result || password === user.password) {
 			return { status: 'success', message: 'User logged in successfully', user: user };
 		} else {
 			return { status: 'error', message: 'Invalid email or password' };

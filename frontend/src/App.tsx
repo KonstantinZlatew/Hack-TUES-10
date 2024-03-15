@@ -32,7 +32,7 @@ const router = createBrowserRouter([
 		errorElement: <div>Brat 404 situaciq</div>,
 	},
 	{
-		path: '/Plants/:PlantId',
+		path: '/Plants/:plantId',
 		element:<Wrapper>
 					<PlantPage/>
 				</Wrapper>,
