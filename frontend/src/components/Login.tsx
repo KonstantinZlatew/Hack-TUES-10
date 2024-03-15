@@ -79,7 +79,7 @@
             <button 
                 type="submit" 
                 onClick={submit} 
-                className="text-lg w-full bg-emerald-800  text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+                className="text-lg w-full bg-emerald-800  text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-indigo-600"
             >
                 Log in
             </button>
