@@ -14,8 +14,7 @@ function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     useEffect(() => {
-        console.log(backendURL)
-        fetch(backendURL)
+        fetch(`${backendURL}/get_random_plants`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error('Failed to fetch random plants');

@@ -8,6 +8,7 @@ import Wrapper from './components/Wrapper'
 import Alert from './components/Alert'
 import PlantPage from './components/PlantPage'
 import useAuthStore from './stores/authStore'
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([ 
 	{
@@ -43,6 +44,7 @@ function App() {
 	const currentUser = useAuthStore((state) => state.user)
   return (<>
 			<RouterProvider router={router} />
+			<Toaster/>
 
   			</>);
 }

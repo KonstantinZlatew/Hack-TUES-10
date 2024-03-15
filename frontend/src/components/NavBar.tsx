@@ -8,7 +8,7 @@ const Navbar = () => {
       { id: 1, text: 'Home' },
       { id: 2, text: 'Favourites' },
       { id: 3, text: 'Notifications' },
-      { id: 4, text: 'Profile' },
+      { id: 4, text: 'Log in / Log out' },
     ];
   
     return (
@@ -25,8 +25,10 @@ const Navbar = () => {
                     aria-label="Search"
                     aria-describedby="button-addon1" />
             </div>
+
+
         {/* </div> */}
-        <ul className='hidden md:flex md:items-center md:gap-1'>
+        {/* <ul className='hidden md:flex md:items-center md:gap-1'>
           {navItems.map(item => (
             <li
               key={item.id}
@@ -35,8 +37,26 @@ const Navbar = () => {
               {item.text}
             </li>
           ))}
+        </ul> */}
+        
+        <ul className='hidden md:flex md:items-center md:gap-1'>
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Home
+          </li>
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Favourites
+          </li>
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Notifications
+          </li>
+          <Link to="/Login">
+          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+            Log in
+          </li>
+          </Link>
         </ul>
-        <ul
+
+        {/* <ul
           className={
             nav
               ? 'fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-r-gray-900 bg-[#000300] ease-in-out duration-500'
@@ -44,15 +64,13 @@ const Navbar = () => {
           }
         >
           <h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>Botanical Buddy</h1>
-          {navItems.map(item => (
+{          
             <li
               key={item.id}
               className='p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600'
             >
-              {item.text}
-            </li>
-          ))}
-        </ul>
+              {item.text} }
+        </ul> */}
       </div>
     );
   };
