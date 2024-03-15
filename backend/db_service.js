@@ -42,7 +42,7 @@ class dbService {
 	if(!user){
 		return { status: 'error', message: 'User not found' };
 	}
-	const plant = await prisma.plant.findUnique({
+	const plant = await prisma.plant.update({
 		where: {
 			id: plantId,
 		},
