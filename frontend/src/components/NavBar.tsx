@@ -68,7 +68,7 @@ const Navbar = () => {
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
             Notifications
           </li>
-          <Logout userId={user.id} />
+          <Logout/>
         </ul>
 
         {/* <ul

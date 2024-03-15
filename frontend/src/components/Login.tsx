@@ -3,7 +3,8 @@
     import { useNavigate, Link } from "react-router-dom"
     import { toast } from "react-hot-toast";
     import useAuthStore from "../stores/authStore";
-
+    import { Button } from "@material-tailwind/react";
+ 
 
     function Login() {
 
@@ -13,6 +14,9 @@
     const [password,setPassword]=useState('')
 
     const setUser = useAuthStore(state => state.setUser)
+
+    
+    
 
     async function submit(e: any){
         e.preventDefault();
@@ -51,10 +55,15 @@
             })
 
         }
+        
 
     return (
-        <div className="my-auto flex-1 max-h-[300px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
-        <h1 className="text-center text-2xl font-bold mb-4">Login</h1>
+        <div className="bg-pink-200 h-screen">
+            <Link to={"/"}>
+            <button className="m-7 p-4 bg-emerald-800 hover:bg-emerald-900 rounded-full text-white">Go Back</button>
+            </Link>
+        <div className="flex-1 my-48 max-h-[300px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
+        <h1 className="text-center text-2xl text-emerald-800 font-bold mb-4">Log in</h1>
 
         <form action="POST">
             <input 
@@ -72,13 +81,14 @@
             <button 
                 type="submit" 
                 onClick={submit} 
-                className="text-lg w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+                className="text-lg w-full bg-emerald-800  text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-indigo-600"
             >
-                Login
+                Log in
             </button>
         </form>
         <div className="text-center mt-4">
-            <Link to="/Sign-Up" className="text-lg text-indigo-500 underline">Signup</Link>
+            <Link to="/Sign-Up" className="text-lg text-emerald-800 underline">Sign up</Link>
+        </div>
         </div>
     </div>
 
