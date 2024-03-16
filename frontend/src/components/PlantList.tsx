@@ -10,7 +10,7 @@ function PlantList() {
     const [plants, setPlants] = useState<Plant[]>([]);
 
     const user = useAuthStore(state => state.user);
-    console.log(user);
+    // console.log(user);
 
     useEffect(() => {
         fetch(`${backendURL}/get_random_plants`)
@@ -34,7 +34,7 @@ function PlantList() {
     return (
         <div className="mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mb-10 bg-pink-200">
             {plants.map(plant => (
-                <Card key={plant.id} id={plant.id} title={plant.name !== null ? plant.name : plant.scientific_name} imageUrl={plant.image_url} />
+                <Card key={plant.id} favourite={false} id={plant.id} title={plant.name !== null ? plant.name : plant.scientific_name} imageUrl={plant.image_url} />
             ))}
         </div>
     );

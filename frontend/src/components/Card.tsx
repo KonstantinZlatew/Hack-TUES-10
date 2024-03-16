@@ -6,10 +6,11 @@ import toast from "react-hot-toast";
 interface PlantCardProps {
   title: string;
   imageUrl: string;
-  id:number;
+  id: number;
+  favourite: boolean;
 }
 
-function Card({title, imageUrl, id}: PlantCardProps){
+function Card({title, imageUrl, id, favourite}: PlantCardProps){
   const user = useAuthStore((state) => state.user);
 
   // async function handleAddToFavourites() {
@@ -27,7 +28,7 @@ function Card({title, imageUrl, id}: PlantCardProps){
   // }
   async function handleAddToFavourites() {
     try {
-        console.log("USERID:", user?.id);
+        // console.log("USERID:", user?.id);
         const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
         // if (response.status === 200) {
         //     // Plant successfully added to favorites
@@ -63,12 +64,14 @@ function Card({title, imageUrl, id}: PlantCardProps){
                 Learn More
               </button>
             </Link>
-            <button
+            {!favourite ? <button
               type="button"
+              title="Add to favourites"
               className="inline-block border-[1px] rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
-              transition duration-150 ">
-              Favorites
-            </button>
+              transition duration-150"
+              onClick={handleAddToFavourites}>
+              Favourites
+            </button> : <span className="text-white italic uppercase">Is favourite!</span>}
         </div>
       </div>
   );

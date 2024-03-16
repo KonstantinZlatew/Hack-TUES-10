@@ -42,7 +42,9 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/Favourite',
-		element: <FavouriteList />,
+		element: <Wrapper>
+					<FavouriteList/>
+				</Wrapper>,
 		errorElement: <div>404</div>
 	},
 ]);
