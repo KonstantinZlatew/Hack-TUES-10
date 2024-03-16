@@ -59,9 +59,11 @@ const Navbar = () => {
         </ul> */}
         
         <ul className='hidden md:flex md:items-center md:gap-1'>
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
-            Home
-          </li>
+          <Link to={"/"}>
+            <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+              Home
+            </li>
+          </Link>
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
             Favourites
           </li>
