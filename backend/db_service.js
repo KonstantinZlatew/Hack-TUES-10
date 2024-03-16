@@ -398,13 +398,12 @@ class dbService {
   }
   async getPlants() {
     const totalCount = await prisma.plant.count();
-    console.log(totalCount)
-    const randomSkip = Math.max(0, Math.floor(Math.random() * (totalCount - 30)));
-    const plants = await prisma.plant.findMany({
-      take: 30, 
-      skip: randomSkip,
-  });
-//   console.log(plants);
+	const getplants = await prisma.plant.findMany({
+	});
+	let plants = [];
+    for(let i = 0; i < 30; i++){
+		plants[i] = getplants[totalCount - i - 20];
+	}
   return plants;
   }
 

@@ -60,9 +60,9 @@ const Navbar = () => {
         
         <ul className='hidden md:flex md:items-center md:gap-1'>
           <Link to={"/"}>
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
-            Home
-          </li>
+            <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+              Home
+            </li>
           </Link>
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
             Favourites
