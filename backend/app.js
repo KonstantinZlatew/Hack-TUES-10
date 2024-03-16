@@ -35,6 +35,36 @@ app.get("/users/:id", async (req, res) => {
         res.status(500).json({ error: error.message });
     }  
 });
+
+app.get("/notifications/:userId", async (req, res) =>{
+    try {
+        const { userId } = req.params;
+        const user = await db.findUserById(userId);
+        const plants = user.plants;
+
+        // Iterate through each plant and schedule reminders
+        for (let plant of plants) {
+            const char_days = plant.watering_general_benchmark_value;
+            const days = parseInt(char_days, 10);
+
+            let time;
+
+            if (days == 1) {time = '0 0 * * *';}
+            if (days > 1 && days < 7) {time = `0 0 */${days} * *`;}
+            if (days == 7) {time = '0 0 * * 0';}
+
+            time = '*/2 * * * * *';
+
+            schedule.scheduleJob(time, () => {
+                res.send(`Water your ${plant.scientific_name}`);
+            });
+        }
+        res.json({ data: user });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 //add plant to user
 app.put("/users/:userId/plants/:plantId", async (req, res) => {
     try {
