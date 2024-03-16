@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 interface PlantCardProps {
   title: string;
   imageUrl: string;
-  id:number;
+  id: number;
+  favourite: boolean;
 }
 
 const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -65,12 +66,14 @@ function Card({title, imageUrl, id}: PlantCardProps){
                 Learn More
               </button>
             </Link>
-            <button
+            {!favourite ? <button
               type="button"
+              title="Add to favourites"
               className="inline-block border-[1px] rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
-              transition duration-150 ">
-              Favorites
-            </button>
+              transition duration-150"
+              onClick={handleAddToFavourites}>
+              Favourites
+            </button> : <span className="text-white italic uppercase">Is favourite!</span>}
         </div>
       </div>
   );

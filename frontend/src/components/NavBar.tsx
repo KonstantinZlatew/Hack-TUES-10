@@ -64,9 +64,11 @@ const Navbar = () => {
               Home
             </li>
           </Link>
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
-            Favourites
-          </li>
+          <Link to={"/Favourite"}>
+            <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+              Favourites
+            </li>
+          </Link>
           <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
             Notifications
           </li>
