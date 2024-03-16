@@ -143,7 +143,7 @@ app.get("/Login/:email/:password", async (req, res) => {
         //console.log(result);
         console.log(password);
         if(user.status === 'success'){
-        res.status(200).json({ user });
+        res.status(200).json({ data : user });
         } else {
             res.status(400).json({ error: user.message });
         }
