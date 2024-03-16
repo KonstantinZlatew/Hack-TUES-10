@@ -98,6 +98,19 @@ app.get("/get_random_plants", async (req, res) => {
     }
 });
 
+app.get("/plants/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const db = new dbService();
+        plants = await db.getPlantsByUserId(userId);
+        //console.log(result);
+
+        res.json({ plants });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.put("/additional_plant_info", async (req, res) => {
     try {
         const db = new dbService();
