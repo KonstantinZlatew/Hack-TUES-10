@@ -41,7 +41,6 @@ app.put("/users/:userId/plants/:plantId", async (req, res) => {
         const { userId, plantId } = req.params;
         const db = new dbService();
         const user = await db.addPlantToUser(userId, plantId);
-        db.printUserPlants(userId);
 
         res.json({ data : user });
     } catch (error) {
