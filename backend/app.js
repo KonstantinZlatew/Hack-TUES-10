@@ -45,6 +45,7 @@ app.get("/notifications/:userId", async (req, res) =>{
         // Iterate through each plant and schedule reminders
         for (let plant of plants) {
             const char_days = plant.watering_general_benchmark_value;
+            char_days = char_days.split('\-');
             const days = parseInt(char_days, 10);
 
             let time;
