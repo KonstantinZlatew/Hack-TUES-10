@@ -32,7 +32,9 @@
         }
         */
 
-        axios.get(`http://localhost:5000/Login/${email}/${password}`)
+        const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+        axios.get(`${backendURL}/Login/${email}/${password}`)
             .then(res=>{
                 
                     toast.success(res.data.data.message)

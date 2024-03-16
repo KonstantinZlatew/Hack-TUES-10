@@ -140,6 +140,30 @@ app.get("/plants/:userId", async (req, res) => {
     }
 });
 
+app.get('/api/plants', async (req, res) => {
+    try {
+      const searchQuery = req.query.q; // Get the search query from request query params
+  
+      if (!searchQuery) {
+        return res.status(400).json({ error: 'Search query is required.' });
+      }
+  
+      // Search for plants whose names or descriptions contain the search query
+      const searchResults = await prisma.plant.findMany({
+        where: {
+          OR: [
+            { name: { contains: searchQuery, mode: 'insensitive' } },
+          ]
+        }
+      });
+  
+      res.json(searchResults);
+    } catch (error) {
+      console.error('Error while searching for plants:', error);
+      res.status(500).json({ error: 'An error occurred while searching for plants.' });
+    }
+  });
+
 app.put("/additional_plant_info", async (req, res) => {
     try {
         const db = new dbService();
