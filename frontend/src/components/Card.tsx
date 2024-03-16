@@ -61,7 +61,7 @@ function Card({title, imageUrl, id, favourite}: PlantCardProps){
             <Link to={`/Plants/${id}`}>
               <button
                 type="button"
-                className="inline-block my-6 border-[1px] rounded-full mr-6 bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150"
+                className="hover:bg-emerald-900 inline-block my-6 border-[1px] rounded-full mr-6 bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150"
               >
                 Learn More
               </button>
@@ -69,7 +69,7 @@ function Card({title, imageUrl, id, favourite}: PlantCardProps){
             {!favourite ? <button
               type="button"
               title="Add to favourites"
-              className="inline-block border-[1px] rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
+              className="hover:bg-emerald-900 inline-block border-[1px] rounded-full bg-primary my-2 px-4 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white
               transition duration-150"
               onClick={handleAddToFavourites}>
               Favourites

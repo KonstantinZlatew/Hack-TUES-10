@@ -2,15 +2,16 @@
 
 ## What is Botanical Buddy
 
-Our project is designed to help new gardeners by giving them information about a plant and reminding them to water their plants every once in a while.
+Web приложение, което ще е много полезно за любители градинари като то ще им помага да разберат всичко за техните растения. Потребителят ще може да добавя растения към своята градина и ще получава напомняне когато трябва да го полива.
 
 ## Technologies
 
+React, TypeScript, Tailwind, Node, Prisma, Express и postgreSQL
 
 ### Frontend
 
-For the frontend we decided to use the JavaScript library React and Tailwind CSS.
+За frontend-а решихме да използваме JavaScript библиотеката React, TypeScript и Tailwind CSS.
 
 ### Backend
 
-For the backend we used Node.js and Prisma
+За backend-а използвахме Node.js, Prisma, Express и postgreSQL
