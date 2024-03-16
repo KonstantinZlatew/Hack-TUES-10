@@ -49,7 +49,7 @@ function Login() {
   return (
     <div className="my-auto flex-1 max-h-[365px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
       
-      <h1 className="text-center text-2xl font-bold mb-4">Signup</h1>
+      <h1 className="text-center text-2xl font-bold mb-4">Sign up</h1>
       <form action="POST">
         <input 
           type="username" 
