@@ -9,6 +9,8 @@ interface PlantCardProps {
   id:number;
 }
 
+const backendURL = import.meta.env.VITE_BACKEND_URL;
+
 function Card({title, imageUrl, id}: PlantCardProps){
   const user = useAuthStore((state) => state.user);
 
@@ -28,7 +30,7 @@ function Card({title, imageUrl, id}: PlantCardProps){
   async function handleAddToFavourites() {
     try {
         console.log("USERID:", user?.id);
-        const response = await axios.put(`http://localhost:5000/users/${user?.id}/plants/${id}`);
+        const response = await axios.put(`${backendURL}/users/${user?.id}/plants/${id}`);
         // if (response.status === 200) {
         //     // Plant successfully added to favorites
         //     alert('Plant added to favorites!');
