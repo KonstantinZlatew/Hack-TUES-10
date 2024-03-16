@@ -40,8 +40,8 @@ function PlantPage () {
             <div className="h-full bg-gradient-to-r from-emerald-800 to-pink-300 flex-1">
             {plant ? (
                 <div className="flex">
-                    <img className="rounded-lg  h-[600px] w-[500px] m-10" src={plant.image_url} alt="Plant" />
-                    <div className="flex flex-col items-center flex flex-1 justify-center h-full w-[300px]">
+                    <img className="rounded-lg  h-[600px] w-[500px] m-10 ml-32" src={plant.image_url} alt="Plant" />
+                    <div className="flex flex-col items-center flex flex-1 justify-center h-full w-[500px]">
                         <h1 className="text-3xl px-72 text-emerald-900 text-center font-bold mt-24 mb-4">Information about the plant</h1>
                         <p className="text-lg"><span className="font-bold text-emerald-900">NAME: </span> {plant.name}</p>
                         <p className="text-lg"><span className="font-bold text-emerald-900">GENUS: </span>{plant.genus}</p>
