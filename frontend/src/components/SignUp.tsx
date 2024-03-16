@@ -35,7 +35,8 @@ function Login() {
         }
         else if(res.status==200){
           toast.success("Account successfully created!")
-          setUser(res.data)
+          setUser(res.data.data.user)
+          localStorage.setItem("user", JSON.stringify(res.data.data.user))
           history("/")
         }
     })
