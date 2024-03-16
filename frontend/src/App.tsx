@@ -10,6 +10,7 @@ import PlantPage from './components/PlantPage'
 import useAuthStore from './stores/authStore'
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import FavouriteList from './components/FavouriteList';
 
 const router = createBrowserRouter([ 
 	{
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
 					<PlantPage/>
 				</Wrapper>,
 		errorElement: <div>Brat 404 situaciq</div>,
+	},
+	{
+		path: '/Favourite',
+		element: <FavouriteList />,
+		errorElement: <div>404</div>
 	},
 ]);
 

@@ -12,10 +12,7 @@
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-    const setUser = useAuthStore(state => state.setUser)
-
-    
-    
+    const setUser = useAuthStore(state => state.setUser)    
 
     async function submit(e: any){
         e.preventDefault();
@@ -37,16 +34,12 @@
 
         axios.get(`http://localhost:5000/Login/${email}/${password}`)
             .then(res=>{
-                if(res.status!=200){
-                    toast.error("Invalid email or password")
-                }
-                else if(res.status==200){
-                    toast.success(res.data.user.message)
-                    console.log(res.data.user.user)
-                    setUser(res.data.user.user)
-                    localStorage.setItem("user", JSON.stringify(res.data.user.user))
+                
+                    toast.success(res.data.data.message)
+                    console.log(res.data.data.user)
+                    setUser(res.data.data.user)
+                    localStorage.setItem("user", JSON.stringify(res.data.data.user))
                     history("/")
-                }
             })
             .catch(e=>{
                 toast.error("Invalid email or password")
@@ -80,7 +73,7 @@
             <button 
                 type="submit" 
                 onClick={submit} 
-                className="text-lg w-full bg-emerald-800  text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-indigo-600"
+                className="text-lg w-full bg-emerald-800 text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-emerald-800"
             >
                 Log in
             </button>
