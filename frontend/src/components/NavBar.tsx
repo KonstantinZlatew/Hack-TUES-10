@@ -18,14 +18,14 @@ const Navbar = () => {
     if (!user) {
       return <div className='w-full pr-20 sticky top-0 bg-gradient-to-r from-emerald-800 to-pink-300 flex items-center gap-x-4 h-24 px-4 text-white'>
         <Link to="/Login">
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+          <button className='p-4 text-white hover:text-zinc-950 hover:bg-pink-200 rounded-xl cursor-pointer duration-300 '>
             Log in
-          </li>
+          </button>
           </Link>
           <Link to="/Sign-Up">
-          <li className='p-4 text-white hover:bg-emerald-800 rounded-xl cursor-pointer duration-300 '>
+          <button className='p-4 text-white hover:text-zinc-950 hover:bg-pink-200 rounded-xl cursor-pointer duration-300 '>
             Sign Up
-          </li>
+          </button>
           </Link>
       </div>
     }

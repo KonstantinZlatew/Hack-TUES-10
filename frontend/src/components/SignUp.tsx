@@ -26,7 +26,9 @@ function Login() {
       return;
     }
 
-    axios.post("http://localhost:5000/user",{
+    const backendURL = import.meta.env.VITE_BACKEND_URL;
+
+    axios.post(`${backendURL}/user`,{
         username,email,password
     })
     .then(res=>{
@@ -53,7 +55,7 @@ function Login() {
         <button className="m-7 p-4 bg-emerald-800 hover:bg-emerald-900 rounded-full text-white">Go Back</button>
       </Link>
       <div className="my-40 flex-1 max-h-[365px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
-        <h1 className="text-center text-2xl font-bold mb-4 text-emerald-800">Signup</h1>
+        <h1 className="text-center text-2xl font-bold mb-4 text-emerald-800">Sign up</h1>
         <form action="POST">
           <input 
             type="username" 
