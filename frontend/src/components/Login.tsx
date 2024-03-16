@@ -3,7 +3,6 @@
     import { useNavigate, Link } from "react-router-dom"
     import { toast } from "react-hot-toast";
     import useAuthStore from "../stores/authStore";
-    import { Button } from "@material-tailwind/react";
  
 
     function Login() {
@@ -13,10 +12,7 @@
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-    const setUser = useAuthStore(state => state.setUser)
-
-    
-    
+    const setUser = useAuthStore(state => state.setUser)    
 
     async function submit(e: any){
         e.preventDefault();
@@ -77,7 +73,7 @@
             <button 
                 type="submit" 
                 onClick={submit} 
-                className="text-lg w-full bg-emerald-800  text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-indigo-600"
+                className="text-lg w-full bg-emerald-800 text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-emerald-800"
             >
                 Log in
             </button>

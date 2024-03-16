@@ -48,43 +48,46 @@ function Login() {
 
 
   return (
-    <div className="my-auto flex-1 max-h-[365px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
-      
-      <h1 className="text-center text-2xl font-bold mb-4">Signup</h1>
-      <form action="POST">
-        <input 
-          type="username" 
-          onChange={(e) => { setUsername(e.target.value) }} 
-          placeholder="Username" 
-          className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
-        />
-        <input 
-          type="email" 
-          onChange={(e) => { setEmail(e.target.value) }} 
-          placeholder="Email" 
-          className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
-        />
-        <input 
-          type="password" 
-          onChange={(e) => { setPassword(e.target.value) }} 
-          placeholder="Password" 
-          className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
-        />
-        <Link to='/Login'>
-          <button 
-            type="submit" 
-            onClick={submit} 
-            className="text-lg w-full bg-indigo-500 text-white py-3 rounded-md hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
-          >
-            Sign up
-          </button>
-        </Link>
-      </form>
-      <div className="text-center mt-4">
-        <Link to="/Login" className="text-indigo-500 underline">Login Page</Link>
+    <div className="bg-pink-200 h-screen">
+      <Link to={"/"}>
+        <button className="m-7 p-4 bg-emerald-800 hover:bg-emerald-900 rounded-full text-white">Go Back</button>
+      </Link>
+      <div className="my-40 flex-1 max-h-[365px] w-[400px] mx-auto p-4 bg-white rounded shadow-md">
+        <h1 className="text-center text-2xl font-bold mb-4 text-emerald-800">Signup</h1>
+        <form action="POST">
+          <input 
+            type="username" 
+            onChange={(e) => { setUsername(e.target.value) }} 
+            placeholder="Username" 
+            className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
+          />
+          <input 
+            type="email" 
+            onChange={(e) => { setEmail(e.target.value) }} 
+            placeholder="Email" 
+            className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
+          />
+          <input 
+            type="password" 
+            onChange={(e) => { setPassword(e.target.value) }} 
+            placeholder="Password" 
+            className="block w-full px-4 py-3 rounded-md border border-gray-300 mb-3 focus:outline-none focus:border-indigo-500"
+          />
+          <Link to='/Login'>
+            <button 
+              type="submit" 
+              onClick={submit} 
+              className="text-lg w-full bg-emerald-800 text-white py-3 rounded-md hover:bg-emerald-900 focus:outline-none focus:bg-emerald-800"
+            >
+              Sign up
+            </button>
+          </Link>
+        </form>
+        <div className="text-center mt-4">
+          <Link to="/Login" className="text-lg text-emerald-800 underline">Login Page</Link>
+        </div>
       </div>
-  </div>
-
+    </div>
   )
 }
 

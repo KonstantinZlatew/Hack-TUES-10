@@ -86,14 +86,15 @@ class dbService {
   }
   async getPlantsByUserId(userId) {
     try {
-      return await prisma.user.findUnique({
+        const user =  await prisma.user.findUnique({
         where: {
           id: userId,
         },
         select : {
-          owned_plants: true
+          plants: true
         } 
       });
+	  return user.plants;
     } catch (error) {
         throw error;
     }
