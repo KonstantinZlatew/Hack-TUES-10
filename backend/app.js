@@ -6,6 +6,8 @@ const dbService = require("./db_service");
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5000;
+const schedule = require('node-schedule');
+
 
 //create a new user
 app.post("/user", async (req, res) => {
@@ -39,13 +41,15 @@ app.get("/users/:id", async (req, res) => {
 app.get("/notifications/:userId", async (req, res) =>{
     try {
         const { userId } = req.params;
+        const db = new dbService();
         const user = await db.findUserById(userId);
         const plants = user.plants;
 
         // Iterate through each plant and schedule reminders
-        for (let plant of plants) {
+        for (let i = 0; i < plants.length; i++) {
+            let plant = plants[i];
             const char_days = plant.watering_general_benchmark_value;
-            char_days = char_days.split('\-');
+            //char_days = char_days.split('\-');
             const days = parseInt(char_days, 10);
 
             let time;
@@ -59,8 +63,8 @@ app.get("/notifications/:userId", async (req, res) =>{
             schedule.scheduleJob(time, () => {
                 res.send(`Water your ${plant.scientific_name}`);
             });
-        }
-        res.json({ data: user });
+        }   
+        //res.json({ data: user });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

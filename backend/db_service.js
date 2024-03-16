@@ -82,6 +82,9 @@ class dbService {
       where: {
         id: id,
       },
+	  include: {
+		plants: true
+	  }
     });
   }
   async getPlantsByUserId(userId) {
