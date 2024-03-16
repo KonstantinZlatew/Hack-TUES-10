@@ -97,6 +97,19 @@ app.get("/get_random_plants", async (req, res) => {
     }
 });
 
+app.get("/plants/:userId", async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const db = new dbService();
+        plants = await db.getPlantsByUserId(userId);
+        //console.log(result);
+
+        res.json({ plants });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.put("/additional_plant_info", async (req, res) => {
     try {
         const db = new dbService();
@@ -130,7 +143,7 @@ app.get("/Login/:email/:password", async (req, res) => {
         //console.log(result);
         console.log(password);
         if(user.status === 'success'){
-        res.status(200).json({ user });
+        res.status(200).json({ data : user });
         } else {
             res.status(400).json({ error: user.message });
         }
